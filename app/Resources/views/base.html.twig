@@ -3,15 +3,26 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}ZeCashDesk{% endblock %}</title>
+    <link rel="stylesheet" href="">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
 <header>
+    <h1>Ze Cash Desk</h1>
     <nav>
+        <ul>
+            <li><img src="{{ asset('images/logo_projet.png') }}" alt="Logo-ZeCashDesk"></li>
+            <li>{{ "now"|date("m/d/Y H:i:s") }}</li>
+            <li>Connexion utilisateur</li>
+        </ul>
     </nav>
 </header>
-<footer>
 
+
+<footer>
+<div>
+    <p>ZeCashDesk - Original Copyrights by Miguel LETEMPLIER & David COSSÉDU</p>
+</div>
 </footer>
 </body>
 </html>
