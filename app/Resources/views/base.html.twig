@@ -2,27 +2,25 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
+    <meta name="Mig & Dav" content="projet ZeCashDesk">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}ZeCashDesk{% endblock %}</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
-<header>
-    <h1>Ze Cash Desk</h1>
-    <nav>
-        <ul>
-            <li><img src="{{ asset('images/logo_projet.png') }}" alt="Logo-ZeCashDesk"></li>
-            <li>{{ "now"|date("m/d/Y H:i:s") }}</li>
-            <li>Connexion utilisateur</li>
-        </ul>
-    </nav>
-</header>
-
+{% include 'header.html.twig' %}
+<div class="container">
+    <div class="starter-template">
+        {% include 'page_connexion.html.twig' %}
+    </div>
+</div>
 
 <footer>
-<div>
-    <p>ZeCashDesk - Original Copyrights by Miguel LETEMPLIER & David COSSÉDU</p>
-</div>
+    <div>
+        <p>ZeCashDesk - Original Copyrights by Miguel LETEMPLIER & David COSSÉDU</p>
+    </div>
 </footer>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>
