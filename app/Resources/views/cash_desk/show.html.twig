@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cash_desk</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cash_desk.id }}</td>
+            </tr>
+            <tr>
+                <th>Datetime</th>
+                <td>{% if cash_desk.dateTime %}{{ cash_desk.dateTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Cashmvt</th>
+                <td>{{ cash_desk.cashMvt }}</td>
+            </tr>
+            <tr>
+                <th>Chequemvt</th>
+                <td>{{ cash_desk.chequeMvt }}</td>
+            </tr>
+            <tr>
+                <th>Cbmvt</th>
+                <td>{{ cash_desk.cbMvt }}</td>
+            </tr>
+            <tr>
+                <th>Typemvt</th>
+                <td>{{ cash_desk.typeMvt }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cash_desk_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('cash_desk_edit', { 'id': cash_desk.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

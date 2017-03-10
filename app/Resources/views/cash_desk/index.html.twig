@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cash_desks list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datetime</th>
+                <th>Cashmvt</th>
+                <th>Chequemvt</th>
+                <th>Cbmvt</th>
+                <th>Typemvt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cash_desk in cash_desks %}
+            <tr>
+                <td><a href="{{ path('cash_desk_show', { 'id': cash_desk.id }) }}">{{ cash_desk.id }}</a></td>
+                <td>{% if cash_desk.dateTime %}{{ cash_desk.dateTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ cash_desk.cashMvt }}</td>
+                <td>{{ cash_desk.chequeMvt }}</td>
+                <td>{{ cash_desk.cbMvt }}</td>
+                <td>{{ cash_desk.typeMvt }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cash_desk_show', { 'id': cash_desk.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cash_desk_edit', { 'id': cash_desk.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cash_desk_new') }}">Create a new cash_desk</a>
+        </li>
+    </ul>
+{% endblock %}
