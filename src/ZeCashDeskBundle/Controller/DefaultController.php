@@ -14,4 +14,13 @@ class DefaultController extends Controller
     {
         return $this->render('base.html.twig');
     }
+
+    /**
+     * @Route("/page_responsable")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function page_responsable(){
+
+        return $this->render('page_responsable.html.twig');
+    }
 }
