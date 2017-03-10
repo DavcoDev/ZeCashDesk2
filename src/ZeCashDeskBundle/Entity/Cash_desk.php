@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Cash_desk
 {
     /**
+     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Users", inversedBy="Cash_desk")
+     */
+    private $users;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -21,12 +26,6 @@ class Cash_desk
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_cash_desk", type="integer")
-     */
-    private $idCashDesk;
 
     /**
      * @var \DateTime
@@ -74,29 +73,6 @@ class Cash_desk
         return $this->id;
     }
 
-    /**
-     * Set idCashDesk
-     *
-     * @param integer $idCashDesk
-     *
-     * @return Cash_desk
-     */
-    public function setIdCashDesk($idCashDesk)
-    {
-        $this->idCashDesk = $idCashDesk;
-
-        return $this;
-    }
-
-    /**
-     * Get idCashDesk
-     *
-     * @return int
-     */
-    public function getIdCashDesk()
-    {
-        return $this->idCashDesk;
-    }
 
     /**
      * Set dateTime

@@ -13,6 +13,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Tickets
 {
     /**
+     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Users")
+     */
+    private $users;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Tickets", mappedBy="Sales")
+     */
+    private $sales;
+
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -21,12 +32,6 @@ class Tickets
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_ticket", type="integer")
-     */
-    private $idTicket;
 
     /**
      * @var \DateTime
@@ -72,30 +77,6 @@ class Tickets
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set idTicket
-     *
-     * @param integer $idTicket
-     *
-     * @return Tickets
-     */
-    public function setIdTicket($idTicket)
-    {
-        $this->idTicket = $idTicket;
-
-        return $this;
-    }
-
-    /**
-     * Get idTicket
-     *
-     * @return int
-     */
-    public function getIdTicket()
-    {
-        return $this->idTicket;
     }
 
     /**

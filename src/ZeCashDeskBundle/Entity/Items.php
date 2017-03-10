@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Items
 {
     /**
+     * @ORM\OneToOne(targetEntity="Sales", mappedBy="Sales")
+     */
+    private $sales;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -21,12 +26,6 @@ class Items
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="gen_code", type="string", length=255)
-     */
-    private $genCode;
 
     /**
      * @var string
@@ -86,30 +85,6 @@ class Items
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set genCode
-     *
-     * @param string $genCode
-     *
-     * @return Items
-     */
-    public function setGenCode($genCode)
-    {
-        $this->genCode = $genCode;
-
-        return $this;
-    }
-
-    /**
-     * Get genCode
-     *
-     * @return string
-     */
-    public function getGenCode()
-    {
-        return $this->genCode;
     }
 
     /**
