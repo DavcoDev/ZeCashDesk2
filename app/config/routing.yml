@@ -1,0 +1,5 @@
+ze_cash_desk:
+    resource: "@ZeCashDeskBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

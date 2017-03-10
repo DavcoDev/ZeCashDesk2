@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="Mig & Dav" content="projet ZeCashDesk">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}ZeCashDesk{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+</head>
+<body>
+{% include 'header.html.twig' %}
+<div class="container">
+    <div class="starter-template">
+        {% include 'page_connexion.html.twig' %}
+    </div>
+</div>
+
+<footer>
+    <div>
+        <p>ZeCashDesk - Designed and engineered by Miguel LETEMPLIER & David COSSÉDU</p>
+    </div>
+</footer>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+</body>
+</html>
