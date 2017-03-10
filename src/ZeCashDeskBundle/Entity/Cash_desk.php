@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Cash_desk
 {
     /**
+     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Users", inversedBy="Cash_desk")
+     */
+    private $users;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -68,7 +73,7 @@ class Cash_desk
         return $this->id;
     }
 
-    
+
     /**
      * Set dateTime
      *

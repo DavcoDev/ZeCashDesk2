@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Users
 {
     /**
+     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Cash_desk", mappedBy="Users")
+     */
+    private $cashdesk;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
