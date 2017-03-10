@@ -21,12 +21,6 @@ class Tickets
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_ticket", type="integer")
-     */
-    private $idTicket;
 
     /**
      * @var \DateTime
@@ -72,30 +66,6 @@ class Tickets
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set idTicket
-     *
-     * @param integer $idTicket
-     *
-     * @return Tickets
-     */
-    public function setIdTicket($idTicket)
-    {
-        $this->idTicket = $idTicket;
-
-        return $this;
-    }
-
-    /**
-     * Get idTicket
-     *
-     * @return int
-     */
-    public function getIdTicket()
-    {
-        return $this->idTicket;
     }
 
     /**

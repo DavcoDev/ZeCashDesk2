@@ -21,12 +21,6 @@ class Users
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_user", type="integer")
-     */
-    private $idUser;
 
     /**
      * @var string
@@ -60,29 +54,6 @@ class Users
         return $this->id;
     }
 
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Users
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return int
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
 
     /**
      * Set firstName
