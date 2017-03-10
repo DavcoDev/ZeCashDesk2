@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Items
 {
     /**
+     * @ORM\OneToOne(targetEntity="Sales", inversedBy="Items")
+     */
+    private $sales;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
