@@ -16,11 +16,22 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/page_responsable")
+     * @Route("/responsable")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function page_responsable(){
 
         return $this->render('page_responsable.html.twig');
     }
+
+    /**
+     * @Route("/hote")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function page_hote(){
+
+        return $this->render('page_hote2caisse.html.twig');
+    }
+
+
 }
