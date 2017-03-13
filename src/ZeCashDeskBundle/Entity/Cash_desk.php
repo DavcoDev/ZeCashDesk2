@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Cash_desk
 {
     /**
-     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Users", inversedBy="Cash_desk")
+     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Users")
      */
     private $users;
 
