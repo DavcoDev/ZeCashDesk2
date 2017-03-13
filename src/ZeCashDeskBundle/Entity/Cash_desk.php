@@ -37,21 +37,21 @@ class Cash_desk
     /**
      * @var float
      *
-     * @ORM\Column(name="cash_mvt", type="float")
+     * @ORM\Column(name="cash_mvt", type="float", options={"default":0})
      */
     private $cashMvt;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="cheque_mvt", type="float")
+     * @ORM\Column(name="cheque_mvt", type="float", options={"default":0})
      */
     private $chequeMvt;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="cb_mvt", type="float")
+     * @ORM\Column(name="cb_mvt", type="float", options={"default":0})
      */
     private $cbMvt;
 
