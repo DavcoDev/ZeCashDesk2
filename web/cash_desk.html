@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Caisse Enregistreuse</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myCSS.css">
     <link rel="icon" type="image/x-icon" href="caddie.ico"/>
 </head>
 </head>
@@ -40,24 +41,48 @@
     </nav>
 </header>
 
-<div class="container">
+<div id="container" class="container">
 
-    <div class="panel panel-primary">
-        <div class="panel-heading">Référence produit</div>
-        <div class="panel-body">
+    <div id="refproduit" class="panel panel-primary"><!--reference et info produit-->
+        <div class="panel-heading text-center">Référence produit</div>
+        <div class="panel-body text-right">
             là où s'affichera le produit
         </div>
     </div>
-    <div class="panel panel-info col-lg-6 col-md-6" >
-        <div class="panel-heading">Référence produit</div>
-        <div class="panel-body">
-            là où s'affichera le produit
-        </div>
-    </div>
+    <div id="globaldiv" class="panel-collapse">
+        <div id="leftdiv" class="panel-collapse">
+            <div id="ticket" class="panel panel-info">
+                <!-- Default panel contents -->
+                <div class="panel-heading text-center">Ticket n° ...</div>
 
+                <!-- Table -->
+                <table class="table">
+                    ...
+                </table>
+            </div>
+        </div><!--end-rightdiv-->
+
+        <div id="rightdiv" class="panel-collapse">
+            <div id="quantite" class="panel panel-info">
+                <div class="panel-heading text-center">Quantité</div>
+                <div class="panel-body text-right">
+                    par défaut Qt 1
+                </div>
+            </div>
+            <div id="reglement" class="reglement">
+                <button type="button" class="reglement btn btn-primary">CB</button>
+                <button type="button" class="reglement btn btn-primary">Chèque</button>
+                <button type="button" class="reglement btn btn-primary">Espèce</button>
+                <button type="button" class="reglement btn btn-primary">Multi</button>
+            </div>
+            <div><button type="submit" class="reglement btn btn-primary">Valider</button></div>
+        </div><!--end-leftdiv-->
+
+
+    </div><!--end-globaldiv-->
 </div>
 
-<footer class="footer" style="position: absolute; bottom: 5em; background-color: black; width: 100%; padding: 2%">
+<footer id="footer" class="footer">
     <div>
         <p style="text-align: center; font-weight: bold">ZeCashDesk - Designed and engineered by Miguel LETEMPLIER &
             David COSSÉDU</p>
