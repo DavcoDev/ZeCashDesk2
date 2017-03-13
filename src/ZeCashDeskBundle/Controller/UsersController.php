@@ -39,14 +39,14 @@ class UsersController extends Controller
      */
     public function newAction(Request $request)
     {
-        $user = new User();
+        $user = new Users();
         $form = $this->createForm('ZeCashDeskBundle\Form\UsersType', $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
-            $em->flush($user);
+            $em->flush();
 
             return $this->redirectToRoute('users_show', array('id' => $user->getId()));
         }
