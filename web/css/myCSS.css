@@ -1,0 +1,43 @@
+#globaldiv {
+    display: flex;
+    height: 100%;
+}
+
+#leftdiv {
+    margin-right: 1%;
+    align-content: center;
+    width: 70%;
+    height: 100%;
+}
+
+#rightdiv {
+    margin-left: 1%;
+    align-content: center;
+    width: 30%;
+    height: 98%;
+}
+
+#ticket {
+    height: 100%;
+    margin-bottom: 20%;
+}
+
+#footer {
+    position: relative;
+    background-color: black;
+    width: 100%;
+    padding: 2%;
+    bottom: 0;
+}
+
+.reglement {
+    align-content: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    margin-bottom: 5%;
+}
+
+#quantite {
+    margin-bottom: 50%;
+}
