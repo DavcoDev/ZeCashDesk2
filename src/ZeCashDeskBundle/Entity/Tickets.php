@@ -50,21 +50,21 @@ class Tickets
     /**
      * @var float
      *
-     * @ORM\Column(name="cash", type="float")
+     * @ORM\Column(name="cash", type="float", options={"default":0})
      */
     private $cash;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="cheque", type="float")
+     * @ORM\Column(name="cheque", type="float", options={"default":0})
      */
     private $cheque;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="cb", type="float")
+     * @ORM\Column(name="cb", type="float", options={"default":0})
      */
     private $cb;
 
