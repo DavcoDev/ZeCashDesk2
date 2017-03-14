@@ -2,6 +2,7 @@
 
 namespace ZeCashDeskBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,17 @@ class Cash_deskType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateTime')->add('cashMvt')->add('chequeMvt')->add('cbMvt')->add('typeMvt')->add('users');
+        $builder
+            ->add('dateTime')
+            ->add('cashMvt')
+            ->add('chequeMvt')
+            ->add('cbMvt')
+            ->add('typeMvt')
+            ->add('users', EntityType::class, array(
+                'class' => 'ZeCashDeskBundle\Entity\Users',
+                'choice_label' => 'firstName'
+            )
+            );
     }
     
     /**
