@@ -13,7 +13,7 @@ class UsersType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstName')->add('lastName')->add('permissions')->add('password')->add('cashdesk');
+        $builder->add('firstName')->add('lastName')->add('permissions')->add('password');
     }
     
     /**

@@ -17,10 +17,10 @@ class Sales
      */
     private $items;
 
-    /**
-     * @ORM\OneToOne(targetEntity="Tickets", inversedBy="Tickets")
-     */
-    private $tickets;
+//    /**
+//     * @ORM\OneToOne(targetEntity="Tickets", inversedBy="Tickets")
+//     */
+//    private $tickets;
 
 
     /**
