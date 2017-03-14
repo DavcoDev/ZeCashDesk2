@@ -12,11 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Items
 {
-    /**
-     * @ORM\OneToOne(targetEntity="Sales", mappedBy="Sales")
-     *
-     */
-    private $sales;
 
     /**
      * @var int

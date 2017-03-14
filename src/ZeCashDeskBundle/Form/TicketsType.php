@@ -18,9 +18,8 @@ class TicketsType extends AbstractType
             ->add('users', EntityType::class, array(
                 'class' => 'ZeCashDeskBundle\Entity\Users',
                 'choice_label' => 'firstName'
-            ))
-//            ->add('sales')
-        ;
+            )
+            );
     }
     
     /**

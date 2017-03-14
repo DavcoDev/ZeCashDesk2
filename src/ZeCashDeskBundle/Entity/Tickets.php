@@ -17,11 +17,6 @@ class Tickets
      */
     private $users;
 
-//    /**
-//     * @ORM\OneToOne(targetEntity="Tickets", mappedBy="Sales")
-//     */
-//    private $sales;
-
 
     /**
      * @var int

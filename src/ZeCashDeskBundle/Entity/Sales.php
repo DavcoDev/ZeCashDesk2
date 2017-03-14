@@ -13,14 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Sales
 {
     /**
-     * @ORM\OneToOne(targetEntity="Items", inversedBy="Items")
+     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Items")
      */
     private $items;
 
-//    /**
-//     * @ORM\OneToOne(targetEntity="Tickets", inversedBy="Tickets")
-//     */
-//    private $tickets;
+    /**
+     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Tickets")
+     */
+    private $tickets;
 
 
     /**
@@ -73,5 +73,40 @@ class Sales
     {
         return $this->salesQty;
     }
+
+    /**
+     * @return \ZeCashDeskBundle\Entity\Tickets
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * @param \ZeCashDeskBundle\Entity\Tickets $tickets
+     */
+    public function setTickets($tickets)
+    {
+        $this->tickets = $tickets;
+    }
+
+    /**
+     * @return \ZeCashDeskBundle\Entity\Items
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param \ZeCashDeskBundle\Entity\Items $items
+     */
+    public function setItems($items)
+    {
+        $this->items = $items;
+    }
+
+
+
 }
 
