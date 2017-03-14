@@ -73,6 +73,20 @@ class UsersController extends Controller
         ));
     }
 
+//    /**
+//     * Know permissions from a user entity.
+//     *
+//     * @Route("/permissions/{id}", name="users_permissions")
+//     * @Method("GET")
+//     */
+//    public function permissionAction(Users $user)
+//    {
+//        $deleteForm = $this->createDeleteForm($user);
+//        return $this->redirectToRoute('users_show', array('id' => $user->getId())
+//        );
+//
+//    }
+
     /**
      * Displays a form to edit an existing user entity.
      *

@@ -33,5 +33,14 @@ class DefaultController extends Controller
         return $this->render('page_hote2caisse.html.twig');
     }
 
+    /**
+     * @Route("/terminal")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function page_terminal()
+    {
+        return $this->render('cash_desk.html.twig');
+    }
+
 
 }
