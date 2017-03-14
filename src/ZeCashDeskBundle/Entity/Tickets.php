@@ -13,14 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Tickets
 {
     /**
-     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Users")
      */
     private $users;
-
-    /**
-     * @ORM\OneToOne(targetEntity="Tickets", mappedBy="Sales")
-     */
-    private $sales;
 
 
     /**
@@ -198,5 +193,23 @@ class Tickets
     {
         return $this->cb;
     }
+
+    /**
+     * @return \ZeCashDeskBundle\Entity\Users
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param \ZeCashDeskBundle\Entity\Users $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
+
+
 }
 

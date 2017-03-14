@@ -39,14 +39,14 @@ class ItemsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $item = new Item();
+        $item = new Items();
         $form = $this->createForm('ZeCashDeskBundle\Form\ItemsType', $item);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($item);
-            $em->flush($item);
+            $em->flush();
 
             return $this->redirectToRoute('items_show', array('id' => $item->getId()));
         }

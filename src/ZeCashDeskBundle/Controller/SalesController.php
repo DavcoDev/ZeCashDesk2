@@ -39,14 +39,14 @@ class SalesController extends Controller
      */
     public function newAction(Request $request)
     {
-        $sale = new Sale();
+        $sale = new Sales();
         $form = $this->createForm('ZeCashDeskBundle\Form\SalesType', $sale);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($sale);
-            $em->flush($sale);
+            $em->flush();
 
             return $this->redirectToRoute('sales_show', array('id' => $sale->getId()));
         }

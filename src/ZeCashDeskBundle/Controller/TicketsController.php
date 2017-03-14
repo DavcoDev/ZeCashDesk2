@@ -39,14 +39,14 @@ class TicketsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $ticket = new Ticket();
+        $ticket = new Tickets();
         $form = $this->createForm('ZeCashDeskBundle\Form\TicketsType', $ticket);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($ticket);
-            $em->flush($ticket);
+            $em->flush();
 
             return $this->redirectToRoute('tickets_show', array('id' => $ticket->getId()));
         }

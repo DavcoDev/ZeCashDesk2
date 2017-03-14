@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Cash_desk
 {
     /**
-     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Users", inversedBy="Cash_desk")
+     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Users")
      */
-    private $users;
+    private $user;
 
     /**
      * @var int
@@ -193,5 +193,23 @@ class Cash_desk
     {
         return $this->typeMvt;
     }
+
+    /**
+     * @return \ZeCashDeskBundle\Entity\Users
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param \ZeCashDeskBundle\Entity\Users $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
 }
 

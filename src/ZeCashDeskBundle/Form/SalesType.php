@@ -2,6 +2,7 @@
 
 namespace ZeCashDeskBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,17 @@ class SalesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('salesQty')->add('items')->add('tickets');
+        $builder
+            ->add('salesQty')
+            ->add('items', EntityType::class, array(
+                'class' => 'ZeCashDeskBundle\Entity\Items',
+                'choice_label' => 'name_item'
+            ))
+            ->add('tickets', EntityType::class, array(
+                'class' => 'ZeCashDeskBundle\Entity\Tickets',
+                'choice_label' => 'id'
+            ))
+        ;
     }
     
     /**
