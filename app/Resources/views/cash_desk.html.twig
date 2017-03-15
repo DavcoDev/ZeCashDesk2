@@ -27,25 +27,22 @@
                 <div id="quantite" class="panel panel-info">
                     <div class="panel-heading text-center">Quantité</div>
                     <div class="panel-body text-right">
-                        par défaut Qt 1
+                        1
                     </div>
                 </div>
+                <div button type="submit" id="validation" class="btn btn-info">Valider</div>
+
                 <div id="reglement" class="reglement">
                     <button type="button" class="reglement btn btn-primary">CB</button>
                     <button type="button" class="reglement btn btn-primary">Chèque</button>
                     <button type="button" class="reglement btn btn-primary">Espèce</button>
                     <button type="button" class="reglement btn btn-primary">Multi</button>
+                    <p><br><br>
+                        <a href="{{ path('zecashdesk_default_page_hote') }}" type="button" id="retour"
+                           class="btn btn-warning btn-lg">Retour au Menu principal</a>
+                        <br><br></p>
                 </div>
-                <div><button type="submit" class="reglement btn btn-primary">Valider</button></div>
             </div><!--end-righydiv-->
-
-
         </div><!--end-globaldiv-->
-        <div class="col-md-offset-3 col-md-3">
-            <p><br><br>
-                <a href="{{ path('zecashdesk_default_page_hote') }}" type="button"
-                   class="btn btn-warning btn-lg center-block">Retour au Menu principal</a>
-                <br><br></p>
-        </div>
     </div>
 {% endblock %}

@@ -1,50 +1,54 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Liste des mouvements de fonds</h1>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-4">
+            <h1>Liste des mouvements de fonds</h1>
 
-    <table>
-        <thead>
-        <tr>
-            <th>N° de caisse</th>
-            <th>Date et heure</th>
-            <th>Espèces</th>
-            <th>Chèque(s)</th>
-            <th>CB </th>
-            <th>Encaissement(1) ou Prélèvement(0)</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for cash_desk in cash_desks %}
-            <tr>
-                <td><a href="{{ path('cash_desk_show', { 'id': cash_desk.id }) }}">{{ cash_desk.id }}</a></td>
-                <td>{% if cash_desk.dateTime %}{{ cash_desk.dateTime|date('d-m-Y H:i:s') }}{% endif %}</td>
-                <td>{{ cash_desk.cashMvt }}</td>
-                <td>{{ cash_desk.chequeMvt }}</td>
-                <td>{{ cash_desk.cbMvt }}</td>
-                <td>{{ cash_desk.typeMvt }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('cash_desk_show', { 'id': cash_desk.id }) }}">Voir</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('cash_desk_edit', { 'id': cash_desk.id }) }}">Modifier</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('cash_desk_new') }}">Créer un nouveau mouvement</a>
-        </li>
-    </ul>
-    <div class="col-md-offset-3 col-md-3">
+            <table>
+                <thead>
+                <tr>
+                    <th>N° de caisse</th>
+                    <th>Date et heure</th>
+                    <th>Espèces</th>
+                    <th>Chèque(s)</th>
+                    <th>CB</th>
+                    <th>Encaissement(1) ou Prélèvement(0)</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cash_desk in cash_desks %}
+                    <tr>
+                        <td><a href="{{ path('cash_desk_show', { 'id': cash_desk.id }) }}">{{ cash_desk.id }}</a></td>
+                        <td>{% if cash_desk.dateTime %}{{ cash_desk.dateTime|date('d-m-Y H:i:s') }}{% endif %}</td>
+                        <td>{{ cash_desk.cashMvt }}</td>
+                        <td>{{ cash_desk.chequeMvt }}</td>
+                        <td>{{ cash_desk.cbMvt }}</td>
+                        <td>{{ cash_desk.typeMvt }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('cash_desk_show', { 'id': cash_desk.id }) }}">Voir</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('cash_desk_edit', { 'id': cash_desk.id }) }}">Modifier</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-offset-4 col-md-3">
+        <ul>
+            <br>
+            <li>
+                <a href="{{ path('cash_desk_new') }}">Créer un nouveau mouvement</a>
+            </li>
+        </ul>
         <p><br><br>
             <a href="{{ path('zecashdesk_default_page_hote') }}" type="button"
                class="btn btn-warning btn-lg center-block">Retour au Menu principal</a>
