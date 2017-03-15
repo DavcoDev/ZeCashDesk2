@@ -17,18 +17,21 @@ security:
 
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+            pattern:   ^/(_(profiler|wdt)|css|images|js)/
+            security:  false
+        main_login:
+            pattern:        ^/login$
+            anonymous:      true
         main:
-            pattern: ^/
-            anonymous: true
-            provider:  in_memory
+            pattern:        ^/
+            anonymous:      false
+            provider:       in_memory
             form_login:
                 login_path: login
                 check_path: login_check
             logout:
-                path: logout
-                target: /platform
+                path:       logout
+                target:     /platform
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
