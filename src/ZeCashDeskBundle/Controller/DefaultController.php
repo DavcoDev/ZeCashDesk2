@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="base")
      */
     public function indexAction()
     {
@@ -16,7 +16,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/responsable")
+     * @Route("/responsable", name="responsable")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function page_responsable(){
@@ -25,7 +25,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/hote")
+     * @Route("/hote", name="hote")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function page_hote(){

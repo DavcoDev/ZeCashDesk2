@@ -3,6 +3,12 @@ ze_cash_desk:
     type:    annotation
     prefix:    /
 
+user:
+    resource: "@UserBundle/Controller/"
+    type:    annotation
+    prefix:    /
+
+
 login:
     path: /login
     defaults:

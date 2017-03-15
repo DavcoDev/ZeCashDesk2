@@ -16,7 +16,9 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><p class="navbar-text">{{ "now"|date("m/d/Y H:i:s") }}</p></li>
+                    <li><p class="navbar-text">Bonjour {{ app.user }}</p></li>
+                    <li></li>
+                    <li><p id="heure" class="navbar-text">{{ "now"|date("d/m/Y") }}</p></li>
                     <li><a class="navbar-brand" href="#">Ze Cash Desk</a></li>
                 </ul>
             </div><!--/.nav-collapse -->

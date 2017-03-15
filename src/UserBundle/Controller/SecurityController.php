@@ -12,18 +12,28 @@ class SecurityController extends Controller
         // Si le visiteur est déjà identifié, on le redirige vers l'accueil
         if ($this
             ->get('security.authorization_checker')
-            ->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->redirectToRoute('zecashdesk_default_page_responsable');
+            ->isGranted('ROLE_ADMIN')
+        ) {
+            return $this->redirectToRoute('responsable');
         }
-
+        if ($this
+            ->get('security.authorization_checker')
+            ->isGranted('ROLE_USER')
+        ) {
+            return $this->redirectToRoute('hote');
+        }
         // Le service authentication_utils permet de récupérer le nom d'utilisateur
         // et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
         // (mauvais mot de passe par exemple)
         $authenticationUtils = $this->get('security.authentication_utils');
 
-        return $this->render('@User/login.html.twig', array(
+//        return $this->render('@User/login.html.twig', array(
+//            'last_username' => $authenticationUtils->getLastUsername(),
+//            'error'         => $authenticationUtils->getLastAuthenticationError(),
+//        ));
+        return $this->render('page_connexion.html.twig', array(
             'last_username' => $authenticationUtils->getLastUsername(),
-            'error'         => $authenticationUtils->getLastAuthenticationError(),
+            'error' => $authenticationUtils->getLastAuthenticationError(),
         ));
     }
 }

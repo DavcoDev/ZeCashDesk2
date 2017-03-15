@@ -31,7 +31,12 @@ security:
                 check_path: login_check
             logout:
                 path:       logout
-                target:     /platform
+                target:     /login
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        # require ROLE_ADMIN for /responsable
+        - { path: ^/responsable, roles: ROLE_ADMIN }
+        # require ROLE_USER for /hote
+        - { path: ^/hote, roles: ROLE_USER}
+
+#        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY}
