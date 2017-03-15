@@ -20,7 +20,7 @@ class Cash_deskType extends AbstractType
             ->add('chequeMvt')
             ->add('cbMvt')
             ->add('typeMvt')
-            ->add('users', EntityType::class, array(
+            ->add('user', EntityType::class, array(
                 'class' => 'ZeCashDeskBundle\Entity\Users',
                 'choice_label' => 'firstName'
             )
