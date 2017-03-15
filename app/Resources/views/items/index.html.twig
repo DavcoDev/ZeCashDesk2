@@ -8,6 +8,7 @@
             <tr>
                 <th>N°</th>
                 <th>Désignation</th>
+                <th>Gencode</th>
                 <th>Rayon</th>
                 <th>Description</th>
                 <th>TVA Taux</th>
@@ -22,6 +23,7 @@
             <tr>
                 <td><a href="{{ path('items_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
                 <td>{{ item.nameItem }}</td>
+                <td>{{ item.gencode }}</td>
                 <td>{{ item.category }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.tva }}</td>
