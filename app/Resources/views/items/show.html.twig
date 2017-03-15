@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Item</h1>
+    <h1>Article</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>N°</th>
                 <td>{{ item.id }}</td>
             </tr>
             <tr>
-                <th>Nameitem</th>
+                <th>Nom</th>
                 <td>{{ item.nameItem }}</td>
             </tr>
             <tr>
-                <th>Category</th>
+                <th>Rayon</th>
                 <td>{{ item.category }}</td>
             </tr>
             <tr>
@@ -22,19 +22,19 @@
                 <td>{{ item.description }}</td>
             </tr>
             <tr>
-                <th>Tva</th>
+                <th>TVA Taux</th>
                 <td>{{ item.tva }}</td>
             </tr>
             <tr>
-                <th>Sellprice</th>
+                <th>Prix de vente</th>
                 <td>{{ item.sellPrice }}</td>
             </tr>
             <tr>
-                <th>Buyprice</th>
+                <th>Prix d'achat</th>
                 <td>{{ item.buyPrice }}</td>
             </tr>
             <tr>
-                <th>Itemqty</th>
+                <th>En stock</th>
                 <td>{{ item.itemQty }}</td>
             </tr>
         </tbody>
@@ -42,14 +42,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('items_index') }}">Back to the list</a>
+            <a href="{{ path('items_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('items_edit', { 'id': item.id }) }}">Edit</a>
+            <a href="{{ path('items_edit', { 'id': item.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>

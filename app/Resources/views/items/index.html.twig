@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Items list</h1>
+    <h1>Liste des références</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nameitem</th>
-                <th>Category</th>
+                <th>N°</th>
+                <th>Désignation</th>
+                <th>Rayon</th>
                 <th>Description</th>
-                <th>Tva</th>
-                <th>Sellprice</th>
-                <th>Buyprice</th>
-                <th>Itemqty</th>
+                <th>TVA Taux</th>
+                <th>Prix de vente</th>
+                <th>Prix d'achat</th>
+                <th>En stock</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -31,10 +31,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('items_show', { 'id': item.id }) }}">show</a>
+                            <a href="{{ path('items_show', { 'id': item.id }) }}">Voir</a>
                         </li>
                         <li>
-                            <a href="{{ path('items_edit', { 'id': item.id }) }}">edit</a>
+                            <a href="{{ path('items_edit', { 'id': item.id }) }}">Modifier</a>
                         </li>
                     </ul>
                 </td>
@@ -45,7 +45,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('items_new') }}">Create a new item</a>
+            <a href="{{ path('items_new') }}">Créer un nouvel article</a>
         </li>
     </ul>
     <div class="col-md-offset-3 col-md-3">

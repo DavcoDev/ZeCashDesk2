@@ -1,32 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Cash_desk</h1>
+    <h1>Mouvement de fonds</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>N°</th>
                 <td>{{ cash_desk.id }}</td>
             </tr>
             <tr>
-                <th>Datetime</th>
-                <td>{% if cash_desk.dateTime %}{{ cash_desk.dateTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Date et heure</th>
+                <td>{% if cash_desk.dateTime %}{{ cash_desk.dateTime|date('d-m-Y H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Cashmvt</th>
+                <th>Espèces</th>
                 <td>{{ cash_desk.cashMvt }}</td>
             </tr>
             <tr>
-                <th>Chequemvt</th>
+                <th>Chèque</th>
                 <td>{{ cash_desk.chequeMvt }}</td>
             </tr>
             <tr>
-                <th>Cbmvt</th>
+                <th>CB</th>
                 <td>{{ cash_desk.cbMvt }}</td>
             </tr>
             <tr>
-                <th>Typemvt</th>
+                <th>Encaissement(1) ou prélèvement(0)</th>
                 <td>{{ cash_desk.typeMvt }}</td>
             </tr>
         </tbody>
@@ -34,14 +34,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('cash_desk_index') }}">Back to the list</a>
+            <a href="{{ path('cash_desk_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('cash_desk_edit', { 'id': cash_desk.id }) }}">Edit</a>
+            <a href="{{ path('cash_desk_edit', { 'id': cash_desk.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
