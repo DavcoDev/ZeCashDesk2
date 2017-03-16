@@ -1,16 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Créer un article</h1>
+    <div class="col-md-offset-3 col-md-6">
+        <br>
+        <p class="label label-default center-block" style="font-size:  x-large">Créer un article</p><br>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Créer" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('items_index') }}">Retour à la liste</a>
-        </li>
-    </ul>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input type="submit" value="Créer"/>
+                {{ form_end(form) }}
+                <br>
+                <ul>
+                    <li>
+                        <a href="{{ path('items_index') }}">Retour à la liste</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
