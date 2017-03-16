@@ -9,7 +9,7 @@ class SecurityController extends Controller
 {
     public function loginAction(Request $request)
     {
-        // Si le visiteur est déjà identifié, on le redirige vers l'accueil
+        // Si le visiteur est déjà identifié, on le redirige vers l'accueil respectif
         if ($this
             ->get('security.authorization_checker')
             ->isGranted('ROLE_ADMIN')
