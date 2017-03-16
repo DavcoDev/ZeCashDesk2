@@ -23,7 +23,7 @@
                             Bonjour {% if is_granted('ROLE_USER') %}{{ app.user.username }}{% endif %}</p></li>
                     <li></li>
                     <li><p id="heure" class="navbar-text">{{ "now"|date("d/m/Y") }}</p></li>
-                    <li><a class="navbar-brand" href="#">Ze Cash Desk</a></li>
+                    <li><a class="navbar-brand" href="{{ path('base') }}">Ze Cash Desk</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
