@@ -25,7 +25,7 @@ class Sales
     /**
      * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Cash_desk")
      */
-    private $cashdsk;
+    private $cashdesk;
 
 
     /**
@@ -114,17 +114,17 @@ class Sales
     /**
      * @return \ZeCashDeskBundle\Entity\Cash_desk
      */
-    public function getCashdsk()
+    public function getCashdesk()
     {
         return $this->cashdesk;
     }
 
     /**
-     * @param \ZeCashDeskBundle\Entity\Cash_desk $cashdsk
+     * @param \ZeCashDeskBundle\Entity\Cash_desk $cashdesk
      */
-    public function setCashdsk($cashdsk)
+    public function setCashdsk($cashdesk)
     {
-        $this->cashdesk = $cashdsk;
+        $this->cashdesk = $cashdesk;
     }
 
 

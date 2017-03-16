@@ -15,7 +15,12 @@ class Cash_desk
     /**
      * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Users")
      */
-    private $user;
+     private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Tickets")
+     */
+    private $ticket;
 
     /**
      * @var int
@@ -208,6 +213,22 @@ class Cash_desk
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return \ZeCashDeskBundle\Entity\Tickets
+     */
+    public function getTicket()
+    {
+        return $this->ticket;
+    }
+
+    /**
+     * @param \ZeCashDeskBundle\Entity\Tickets $ticket
+     */
+    public function setTicket($ticket)
+    {
+        $this->ticket = $ticket;
     }
 
 

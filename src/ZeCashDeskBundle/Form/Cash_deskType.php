@@ -16,6 +16,10 @@ class Cash_deskType extends AbstractType
     {
         $builder
             ->add('dateTime')
+            ->add('ticket', EntityType::class, array(
+                'class' => 'ZeCashDeskBundle\Entity\Tickets',
+                'choice_label' => 'id'
+            ))
             ->add('cashMvt')
             ->add('chequeMvt')
             ->add('cbMvt')
@@ -23,10 +27,9 @@ class Cash_deskType extends AbstractType
             ->add('user', EntityType::class, array(
                 'class' => 'ZeCashDeskBundle\Entity\Users',
                 'choice_label' => 'firstName'
-            )
-            );
+            ));
     }
-    
+
     /**
      * {@inheritdoc}
      */
