@@ -22,6 +22,11 @@ class Sales
      */
     private $tickets;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Cash_desk")
+     */
+    private $cashdsk;
+
 
     /**
      * @var int
@@ -105,6 +110,23 @@ class Sales
     {
         $this->items = $items;
     }
+
+    /**
+     * @return \ZeCashDeskBundle\Entity\Cash_desk
+     */
+    public function getCashdsk()
+    {
+        return $this->cashdesk;
+    }
+
+    /**
+     * @param \ZeCashDeskBundle\Entity\Cash_desk $cashdsk
+     */
+    public function setCashdsk($cashdsk)
+    {
+        $this->cashdesk = $cashdsk;
+    }
+
 
 
 
