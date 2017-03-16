@@ -12,6 +12,8 @@ class LoadUser implements FixtureInterface
     {
         // Les noms d'utilisateurs à créer
         $listNames = array('Dav', 'Mig');
+
+
         foreach ($listNames as $name) {
             // On crée l'utilisateur
             $user = new User;
@@ -27,6 +29,14 @@ class LoadUser implements FixtureInterface
             // On le persiste
             $manager->persist($user);
         }
+        $admin = new User();
+
+        $admin->setUsername('Admin');
+        $admin->setPassword('Admin');
+        $admin->setSalt('');
+        $admin->setRoles(array('ROLE_ADMIN'));
+        $manager->persist($admin);
+
         // On déclenche l'enregistrement
         $manager->flush();
     }

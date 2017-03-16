@@ -16,7 +16,7 @@ class TicketsType extends AbstractType
     {
         $builder->add('dateTime')->add('total')->add('cash')->add('cheque')->add('cb')
             ->add('users', EntityType::class, array(
-                'class' => 'ZeCashDeskBundle\Entity\Users',
+                'class' => 'UserBundle\Entity\User',
                 'choice_label' => 'firstName'
             )
             );

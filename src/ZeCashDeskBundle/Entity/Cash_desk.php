@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Cash_desk
 {
     /**
-     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      */
      private $user;
 
@@ -200,7 +200,7 @@ class Cash_desk
     }
 
     /**
-     * @return \ZeCashDeskBundle\Entity\Users
+     * @return \UserBundle\Entity\User
      */
     public function getUser()
     {
@@ -208,7 +208,7 @@ class Cash_desk
     }
 
     /**
-     * @param \ZeCashDeskBundle\Entity\Users $user
+     * @param \UserBundle\Entity\User $user
      */
     public function setUser($user)
     {

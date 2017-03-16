@@ -3,6 +3,7 @@
 namespace ZeCashDeskBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -23,28 +24,29 @@ class DefaultController extends Controller
         else return $this->render('base.html.twig');
     }
 
-//    /**
-//     * @Security("has_role('ROLE_ADMIN')")
-//     * @Route("/responsable", name="responsable")
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function page_responsable(){
-//
-//        return $this->render('page_responsable.html.twig');
-//    }
-//
-//    /**
-//     * @Security("has_role('ROLE_USER')")
-//     * @Route("/hote", name="hote")
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function page_hote(){
-//
-//        return $this->render('page_hote2caisse.html.twig');
-//    }
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/responsable", name="responsable")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function page_responsable(){
+
+        return $this->render('page_responsable.html.twig');
+    }
 
     /**
-     * @Route("/terminal")
+     * @Security("has_role('ROLE_USER')")
+     * @Route("/hote", name="hote")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function page_hote(){
+
+        return $this->render('page_hote2caisse.html.twig');
+    }
+
+    /**
+     * @Security("has_role('ROLE_USER')")
+     * @Route("/terminal", name="terminal")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function page_terminal()
