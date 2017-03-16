@@ -1,51 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Items list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nameitem</th>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Tva</th>
-                <th>Sellprice</th>
-                <th>Buyprice</th>
-                <th>Itemqty</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for item in items %}
-            <tr>
-                <td><a href="{{ path('items_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
-                <td>{{ item.nameItem }}</td>
-                <td>{{ item.category }}</td>
-                <td>{{ item.description }}</td>
-                <td>{{ item.tva }}</td>
-                <td>{{ item.sellPrice }}</td>
-                <td>{{ item.buyPrice }}</td>
-                <td>{{ item.itemQty }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('items_show', { 'id': item.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('items_edit', { 'id': item.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('items_new') }}">Create a new item</a>
-        </li>
-    </ul>
+    <div class="col-md-offset-3 col-md-6">
+        <br>
+        <p class="label label-default center-block" style="font-size:  x-large">Liste des références</p><br>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <table>
+                <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Désignation</th>
+                    <th>Gencode</th>
+                    <th>Rayon</th>
+                    <th>Description</th>
+                    <th>TVA Taux</th>
+                    <th>Prix de vente</th>
+                    <th>Prix d'achat</th>
+                    <th>En stock</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td><a href="{{ path('items_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
+                        <td>{{ item.nameItem }}</td>
+                        <td>{{ item.gencode }}</td>
+                        <td>{{ item.category }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.tva }}</td>
+                        <td>{{ item.sellPrice }}</td>
+                        <td>{{ item.buyPrice }}</td>
+                        <td>{{ item.itemQty }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('items_show', { 'id': item.id }) }}">Voir</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('items_edit', { 'id': item.id }) }}">Modifier</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-offset-4 col-md-4">
+        <ul>
+            <br>
+            <li>
+                <a href="{{ path('items_new') }}">Créer un nouvel article</a>
+            </li>
+        </ul>
+        <p><br><br>
+            <a href="{{ path('zecashdesk_default_page_responsable') }}" type="button"
+               class="btn btn-warning btn-lg center-block">Retour au Menu principal</a>
+            <br><br></p>
+    </div>
 {% endblock %}

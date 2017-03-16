@@ -1,48 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Ticket</h1>
+    <div class="col-md-offset-3 col-md-6">
+        <br>
+        <p class="label label-default center-block" style="font-size:  x-large">Ticket</p><br>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <table>
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ ticket.id }}</td>
+                </tr>
+                <tr>
+                    <th>Datetime</th>
+                    <td>{% if ticket.dateTime %}{{ ticket.dateTime|date('d-m-Y H:i:s') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <td>{{ ticket.total }}</td>
+                </tr>
+                <tr>
+                    <th>Espèces</th>
+                    <td>{{ ticket.cash }}</td>
+                </tr>
+                <tr>
+                    <th>Chèque</th>
+                    <td>{{ ticket.cheque }}</td>
+                </tr>
+                <tr>
+                    <th>CB</th>
+                    <td>{{ ticket.cb }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ticket.id }}</td>
-            </tr>
-            <tr>
-                <th>Datetime</th>
-                <td>{% if ticket.dateTime %}{{ ticket.dateTime|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Total</th>
-                <td>{{ ticket.total }}</td>
-            </tr>
-            <tr>
-                <th>Cash</th>
-                <td>{{ ticket.cash }}</td>
-            </tr>
-            <tr>
-                <th>Cheque</th>
-                <td>{{ ticket.cheque }}</td>
-            </tr>
-            <tr>
-                <th>Cb</th>
-                <td>{{ ticket.cb }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('tickets_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('tickets_edit', { 'id': ticket.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <ul>
+                <li>
+                    <a href="{{ path('tickets_index') }}">Retour à la liste</a>
+                </li>
+                <li>
+                    <a href="{{ path('tickets_edit', { 'id': ticket.id }) }}">Edit</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Supprimer">
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}

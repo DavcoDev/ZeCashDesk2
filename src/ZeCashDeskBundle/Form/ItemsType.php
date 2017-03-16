@@ -13,7 +13,7 @@ class ItemsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nameItem')->add('category')->add('description')->add('tva')->add('sellPrice')->add('buyPrice')->add('itemQty');
+        $builder->add('nameItem')->add('gencode')->add('category')->add('description')->add('tva')->add('sellPrice')->add('buyPrice')->add('itemQty');
     }
     
     /**

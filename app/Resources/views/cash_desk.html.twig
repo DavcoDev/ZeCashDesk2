@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <body>
+    <div id="container" class="container">
+
+        <div id="refproduit" class="panel panel-primary"><!--reference et info produit-->
+            <div class="panel-heading text-center">Référence produit</div>
+            <div class="panel-body text-right">
+                là où s'affichera le produit
+            </div>
+        </div>
+        <div id="globaldiv" class="panel-collapse">
+            <div id="leftdiv" class="panel-collapse">
+                <div id="ticket" class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading text-center">Ticket n° ...</div>
+
+                    <!-- Table -->
+                    <table class="table">
+                        ...
+                    </table>
+                </div>
+            </div><!--end-leftdiv-->
+
+            <div id="rightdiv" class="panel-collapse">
+                <div id="quantite" class="panel panel-info">
+                    <div class="panel-heading text-center">Quantité</div>
+                    <div class="panel-body text-right">
+                        1
+                    </div>
+                </div>
+                <div button type="submit" id="validation" class="btn btn-info">Valider</div>
+
+                <div id="reglement" class="reglement">
+                    <button type="button" class="reglement btn btn-primary">CB</button>
+                    <button type="button" class="reglement btn btn-primary">Chèque</button>
+                    <button type="button" class="reglement btn btn-primary">Espèce</button>
+                    <button type="button" class="reglement btn btn-primary">Multi</button>
+                    <p><br><br>
+                        <a href="{{ path('zecashdesk_default_page_hote') }}" type="button" id="retour"
+                           class="btn btn-warning btn-lg">Retour au Menu principal</a>
+                        <br><br></p>
+                </div>
+            </div><!--end-righydiv-->
+        </div><!--end-globaldiv-->
+    </div>
+{% endblock %}
