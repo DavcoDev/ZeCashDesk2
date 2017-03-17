@@ -26,7 +26,7 @@ class Cash_deskType extends AbstractType
             ->add('typeMvt')
             ->add('user', EntityType::class, array(
                 'class' => 'UserBundle\Entity\User',
-                'choice_label' => 'firstName'
+                'choice_label' => 'user'
             ));
     }
 
