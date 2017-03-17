@@ -15,23 +15,23 @@
                 </tr>
                 <tr>
                     <th>Date et heure</th>
-                    <td>{% if cash_desk.dateTime %}{{ cash_desk.dateTime|date('d-m-Y H:i:s') }}{% endif %}</td>
+                    <td>{% if cash_desk.dateHeure %}{{ cash_desk.dateHeure|date('d-m-Y H:i:s') }}{% endif %}</td>
                 </tr>
                 <tr>
                     <th>Espèces</th>
-                    <td>{{ cash_desk.cashMvt }}</td>
+                    <td>{{ cash_desk.especes }}</td>
                 </tr>
                 <tr>
                     <th>Chèque</th>
-                    <td>{{ cash_desk.chequeMvt }}</td>
+                    <td>{{ cash_desk.cheque }}</td>
                 </tr>
                 <tr>
                     <th>CB</th>
-                    <td>{{ cash_desk.cbMvt }}</td>
+                    <td>{{ cash_desk.cb }}</td>
                 </tr>
                 <tr>
                     <th>Encaissement(1) ou prélèvement(0)</th>
-                    <td>{{ cash_desk.typeMvt }}</td>
+                    <td>{{ cash_desk.typeTransaction }}</td>
                 </tr>
                 </tbody>
             </table>
