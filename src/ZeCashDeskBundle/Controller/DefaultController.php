@@ -51,7 +51,7 @@ class DefaultController extends Controller
      */
     public function page_terminal()
     {
-        return $this->render('cash_desk.html.twig');
+        return $this->render('terminal.twig');
     }
 
 
