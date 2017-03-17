@@ -10,4 +10,9 @@ namespace ZeCashDeskBundle\Repository;
  */
 class Cash_deskRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    function afficherCodebarre(){
+
+    }
+
 }

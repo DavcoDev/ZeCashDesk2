@@ -7,7 +7,7 @@
         <div id="refproduit" class="panel panel-primary"><!--reference et info produit-->
             <div class="panel-heading text-center">Référence produit</div>
             <div class="panel-body text-right">
-                là où s'affichera le produit
+                <input id="codebarre" type="text" placeholder="là où s'affichera le produit">
             </div>
         </div>
         <div id="globaldiv" class="panel-collapse">
@@ -27,16 +27,15 @@
                 <div id="quantite" class="panel panel-info">
                     <div class="panel-heading text-center">Quantité</div>
                     <div class="panel-body text-right">
-                        1
+                        <input class="panel-body text-right" type="text" value="1">
                     </div>
                 </div>
                 <input type="submit" id="validation" class="btn btn-info" value="Valider" />
+                <input type="submit" id="annulation" class="btn btn-danger" value="Annuler article" />
 
                 <div id="reglement" class="reglement">
-                    <button type="button" class="reglement btn btn-primary">CB</button>
-                    <button type="button" class="reglement btn btn-primary">Chèque</button>
-                    <button type="button" class="reglement btn btn-primary">Espèce</button>
-                    <button type="button" class="reglement btn btn-primary">Multi</button>
+                    <button type="button" class="reglement btn btn-primary">Règlements</button>
+
                     <p><br><br>
                         <a href="{{ path('base') }}" type="button" id="retour"
                            class="btn btn-warning btn-lg">Retour au Menu principal</a>
