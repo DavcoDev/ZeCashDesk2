@@ -22,10 +22,10 @@ class Sales
      */
     private $tickets;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Cash_desk")
-     */
-    private $cashdesk;
+//    /**
+//     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Cash_desk")
+//     */
+//    private $cashdesk;
 
 
     /**

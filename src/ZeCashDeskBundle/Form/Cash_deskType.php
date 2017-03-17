@@ -15,18 +15,18 @@ class Cash_deskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateTime')
+            ->add('dateHeure')
             ->add('ticket', EntityType::class, array(
                 'class' => 'ZeCashDeskBundle\Entity\Tickets',
                 'choice_label' => 'id'
             ))
-            ->add('cashMvt')
-            ->add('chequeMvt')
-            ->add('cbMvt')
-            ->add('typeMvt')
+            ->add('especes')
+            ->add('cheque')
+            ->add('cb')
+            ->add('typeTransaction')
             ->add('user', EntityType::class, array(
                 'class' => 'UserBundle\Entity\User',
-                'choice_label' => 'user'
+                'choice_label' => 'username'
             ));
     }
 
