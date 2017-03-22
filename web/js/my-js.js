@@ -14,15 +14,15 @@ function afficher() {
 }
 
 
-function codebarre() {
+// function codebarre() {
+//
+//     $.ajax({
+//         url: '/terminal/genCode/{gencode}',
+//         method: 'GET',
+//     }).done(function (data) {
+//
+//
+//     });
+//     $('#ticket').append($_GET['codebarre']);
 
-    $.ajax({
-        url: '/terminal/genCode/{gencode}',
-        method: 'GET',
-    }).done(function (data) {
 
-
-    });
-    $('#ticket').append($_GET['codebarre']);
-
-}

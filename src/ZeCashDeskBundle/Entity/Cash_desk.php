@@ -99,9 +99,7 @@ class Cash_desk
     }
 
     /**
-     * Set cashMvt
-     *
-     * @param float $cashMvt
+     * Set cash
      *
      * @return Cash_desk
      */

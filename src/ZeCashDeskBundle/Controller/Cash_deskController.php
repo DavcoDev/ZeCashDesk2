@@ -5,7 +5,8 @@ namespace ZeCashDeskBundle\Controller;
 use ZeCashDeskBundle\Entity\Cash_desk;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Cash_desk controller.
@@ -36,6 +37,8 @@ class Cash_deskController extends Controller
      *
      * @Route("/new", name="cash_desk_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -46,7 +49,7 @@ class Cash_deskController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($cash_desk);
-            $em->flush($cash_desk);
+            $em->flush();
 
             return $this->redirectToRoute('cash_desk_show', array('id' => $cash_desk->getId()));
         }
@@ -62,6 +65,8 @@ class Cash_deskController extends Controller
      *
      * @Route("/{id}", name="cash_desk_show")
      * @Method("GET")
+     * @param Cash_desk $cash_desk
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Cash_desk $cash_desk)
     {
@@ -78,6 +83,9 @@ class Cash_deskController extends Controller
      *
      * @Route("/{id}/edit", name="cash_desk_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Cash_desk $cash_desk
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Cash_desk $cash_desk)
     {
@@ -103,6 +111,9 @@ class Cash_deskController extends Controller
      *
      * @Route("/{id}", name="cash_desk_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Cash_desk $cash_desk
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Cash_desk $cash_desk)
     {
@@ -130,7 +141,6 @@ class Cash_deskController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('cash_desk_delete', array('id' => $cash_desk->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
