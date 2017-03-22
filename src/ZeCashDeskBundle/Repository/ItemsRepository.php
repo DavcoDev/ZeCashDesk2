@@ -1,6 +1,7 @@
 <?php
 
 namespace ZeCashDeskBundle\Repository;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
@@ -13,17 +14,15 @@ class ItemsRepository extends \Doctrine\ORM\EntityRepository
 {
 
     /**
-     * @param $code
+     * @param $query
      * @return $this
      */
-    public function genCode($code)
+    public function findByGencode($query)
     {
-        $this->createQueryBuilder('g')
-            ->where("g.gencode > ?1")
-            ->setParameter(1, $code)
+        return $this->createQueryBuilder('gen')
+            ->where('gen.gencode = :gencode')
+            ->setParameter('gencode', $query)
             ->getQuery()
-            ->getResult();
-
-        return $this;
+            ->execute();
     }
 }

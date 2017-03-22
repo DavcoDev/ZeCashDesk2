@@ -7,9 +7,9 @@
     <div id="refproduit" class="panel panel-primary"><!--reference et info produit-->
         <div class="panel-heading text-center">Référence produit</div>
         <div class="panel-body text-right">
-            <form action="{{ path('genCode') }}" method="get">
-                <input id="codebarre" type="text" name="" value="" placeholder="là où s'affichera le produit">
-            </form>
+            {#<form action="{{ path('genCode') }}" method="get">#}
+                <input id="codebarre" type="text" name="gencode" value="" placeholder="là où s'affichera le produit">
+            {#</form>#}
         </div>
     </div>
     <div id="globaldiv" class="panel-collapse">
@@ -19,7 +19,7 @@
                 <div class="panel-heading text-center">Ticket n° ...</div>
 
                 <!-- Table -->
-                <table class="table">
+                <table id="liste" class="table">
                     ...
                 </table>
             </div>
