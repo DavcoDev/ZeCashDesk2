@@ -14,7 +14,8 @@ class TicketsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateTime')->add('total')->add('cash')->add('cheque')->add('cb')
+        $builder
+            ->add('numTicket')
             ->add('users', EntityType::class, array(
                 'class' => 'UserBundle\Entity\User',
                 'choice_label' => 'firstName'

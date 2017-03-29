@@ -3,7 +3,7 @@ $(init);
 function init() {
     afficher();
     setInterval(afficher, 1000);
-    getGencode();
+    scanItems();
 }
 
 function afficher() {
@@ -13,6 +13,11 @@ function afficher() {
 
 }
 
+function scanItems() {
+    initTicket()
+    getGencode();
+
+}
 
 function getGencode() {
 
@@ -28,10 +33,14 @@ function getGencode() {
                 console.log(data);
 
                 $('#showTicket').append('<tr><td>' + $('#qtyTicket').val() + '</td><td>' + data.nameItem + '</td><td>'
-                    + data.sellPrice + ' € </td><td>'+ $('#qtyTicket').val()*data.sellPrice +' €</td></tr>');
+                    + data.sellPrice + ' € </td><td>' + $('#qtyTicket').val() * data.sellPrice + ' €</td></tr>');
                 $('#codebarre').val('');
             }
         });
     });
+
+    function initTicket() {
+
+    }
 
 }
