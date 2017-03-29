@@ -13,14 +13,19 @@ use Doctrine\ORM\Mapping as ORM;
 class Sales
 {
     /**
-     * @ORM\OneToOne(targetEntity="Items", inversedBy="Items")
+     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Items")
      */
     private $items;
 
     /**
-     * @ORM\OneToOne(targetEntity="Tickets", inversedBy="Tickets")
+     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Tickets")
      */
     private $tickets;
+
+//    /**
+//     * @ORM\ManyToOne(targetEntity="ZeCashDeskBundle\Entity\Cash_desk")
+//     */
+//    private $cashdesk;
 
 
     /**
@@ -73,5 +78,57 @@ class Sales
     {
         return $this->salesQty;
     }
+
+    /**
+     * @return \ZeCashDeskBundle\Entity\Tickets
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * @param \ZeCashDeskBundle\Entity\Tickets $tickets
+     */
+    public function setTickets($tickets)
+    {
+        $this->tickets = $tickets;
+    }
+
+    /**
+     * @return \ZeCashDeskBundle\Entity\Items
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param \ZeCashDeskBundle\Entity\Items $items
+     */
+    public function setItems($items)
+    {
+        $this->items = $items;
+    }
+
+//    /**
+//     * @return \ZeCashDeskBundle\Entity\Cash_desk
+//     */
+//    public function getCashdesk()
+//    {
+//        return $this->cashdesk;
+//    }
+
+//    /**
+//     * @param \ZeCashDeskBundle\Entity\Cash_desk $cashdesk
+//     */
+//    public function setCashdsk($cashdesk)
+//    {
+//        $this->cashdesk = $cashdesk;
+//    }
+
+
+
+
 }
 

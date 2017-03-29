@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-offset-3 col-md-6">
+        <br>
+        <p class="label label-default center-block" style="font-size:  x-large">Liste des tickets</p><br>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <table>
+                <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Date et heure</th>
+                    <th>Total</th>
+                    <th>Espèces</th>
+                    <th>Chèque</th>
+                    <th>CB</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ticket in tickets %}
+                    <tr>
+                        <td><a href="{{ path('tickets_show', { 'id': ticket.id }) }}">{{ ticket.id }}</a></td>
+                        <td>{% if ticket.dateTime %}{{ ticket.dateTime|date('d-m-Y H:i:s') }}{% endif %}</td>
+                        <td>{{ ticket.total }}</td>
+                        <td>{{ ticket.cash }}</td>
+                        <td>{{ ticket.cheque }}</td>
+                        <td>{{ ticket.cb }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('tickets_show', { 'id': ticket.id }) }}">Voir</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('tickets_edit', { 'id': ticket.id }) }}">Modifier</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-offset-4 col-md-4">
+        <ul>
+            <br>
+            <li>
+                <a href="{{ path('tickets_new') }}">Créer un nouveau Ticket</a>
+            </li>
+        </ul>
+        <p><br><br>
+            <a href="{{ path('base') }}" type="button"
+               class="btn btn-warning btn-lg center-block">Retour au Menu principal</a>
+            <br><br></p>
+    </div>
+{% endblock %}

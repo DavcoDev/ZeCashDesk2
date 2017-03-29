@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-offset-3 col-md-6">
+        <br>
+        <p class="label label-default center-block" style="font-size:  x-large">Transaction</p><br>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <table>
+                <tbody>
+                <tr>
+                    <th>N°</th>
+                    <td>{{ cash_desk.id }}</td>
+                </tr>
+                <tr>
+                    <th>Date et heure</th>
+                    <td>{% if cash_desk.dateHeure %}{{ cash_desk.dateHeure|date('d-m-Y H:i:s') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Espèces</th>
+                    <td>{{ cash_desk.especes }}</td>
+                </tr>
+                <tr>
+                    <th>Chèque</th>
+                    <td>{{ cash_desk.cheque }}</td>
+                </tr>
+                <tr>
+                    <th>CB</th>
+                    <td>{{ cash_desk.cb }}</td>
+                </tr>
+                <tr>
+                    <th>Encaissement(1) ou prélèvement(0)</th>
+                    <td>{{ cash_desk.typeTransaction }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <ul>
+                <li>
+                    <a href="{{ path('cash_desk_index') }}">Retour à la liste</a>
+                </li>
+                <li>
+                    <a href="{{ path('cash_desk_edit', { 'id': cash_desk.id }) }}">Modifier</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Supprimer">
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <body>
+<div id="container" class="container">
+
+    <div id="refproduit" class="panel panel-primary"><!--reference et info produit-->
+        <div class="panel-heading text-center">Référence produit</div>
+        <div class="panel-body text-right">
+            <input id="codebarre" type="text" placeholder="là où s'affichera le produit">
+        </div>
+    </div>
+    <div id="globaldiv" class="panel-collapse">
+        <div id="leftdiv" class="panel-collapse">
+            <div id="ticket" class="panel panel-info">
+                <div id="numTicket" class="panel-heading text-center">Ticket n°:</div>
+                <table id="showTicket" class="table">
+                    <tr>
+                        <th>Quantité</th>
+                        <th>Produit</th>
+                        <th>P.U</th>
+                        <th>Total</th>
+                    </tr>
+                </table>
+                <div id="totalTicket" class="panel panel-info col-lg-offset-8 col-lg-4 col-md-offset-8 col-md-4 ">
+                    Total :
+                </div>
+            </div>
+        </div><!--end-leftdiv-->
+
+        <div id="rightdiv" class="panel-collapse">
+            <div id="quantite" class="panel panel-info">
+                <div class="panel-heading text-center">Quantité</div>
+                <div class="panel-body text-right">
+                    <input id="qtyTicket" class="panel-body text-right" type="text" value="1">
+                </div>
+            </div>
+            <input type="submit" id="validation" class="btn btn-info" value="Valider"/>
+            <input type="submit" id="annulation" class="btn btn-danger" value="Annuler article"/>
+
+            <div id="reglement" class="reglement">
+                <button type="button" class="reglement btn btn-primary">Règlements</button>
+
+                <p><br><br>
+                    <a href="{{ path('base') }}" type="button" id="retour"
+                       class="btn btn-warning btn-lg">Retour au Menu principal</a>
+                    <br><br></p>
+            </div>
+        </div><!--end-righydiv-->
+    </div><!--end-globaldiv-->
+</div>
+{% endblock %}

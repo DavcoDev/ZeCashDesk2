@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-offset-3 col-md-6">
+        <br>
+        <p class="label label-default center-block" style="font-size:  x-large">Article</p><br>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <table>
+                <tbody>
+                <tr>
+                    <th>N°</th>
+                    <td>{{ item.id }}</td>
+                </tr>
+                <tr>
+                    <th>Gencode</th>
+                    <td>{{ item.gencode }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ item.nameItem }}</td>
+                </tr>
+                <tr>
+                    <th>Rayon</th>
+                    <td>{{ item.category }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ item.description }}</td>
+                </tr>
+                <tr>
+                    <th>TVA Taux</th>
+                    <td>{{ item.tva }}</td>
+                </tr>
+                <tr>
+                    <th>Prix de vente</th>
+                    <td>{{ item.sellPrice }}</td>
+                </tr>
+                <tr>
+                    <th>Prix d'achat</th>
+                    <td>{{ item.buyPrice }}</td>
+                </tr>
+                <tr>
+                    <th>En stock</th>
+                    <td>{{ item.itemQty }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <ul>
+                <li>
+                    <a href="{{ path('items_index') }}">Retour à la liste</a>
+                </li>
+                <li>
+                    <a href="{{ path('items_edit', { 'id': item.id }) }}">Modifier</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Supprimer">
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

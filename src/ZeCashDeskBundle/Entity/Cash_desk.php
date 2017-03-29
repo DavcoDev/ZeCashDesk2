@@ -13,9 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Cash_desk
 {
     /**
-     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Users", inversedBy="Cash_desk")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      */
-    private $users;
+     private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Tickets")
+     */
+    private $ticket;
 
     /**
      * @var int
@@ -30,37 +35,37 @@ class Cash_desk
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_time", type="datetime")
+     * @ORM\Column(name="date_heure", type="datetime", options={"default":0})
      */
-    private $dateTime;
+    private $dateHeure;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="cash_mvt", type="float")
+     * @ORM\Column(name="especes", type="float", options={"default":0})
      */
-    private $cashMvt;
+    private $especes;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="cheque_mvt", type="float")
+     * @ORM\Column(name="cheque", type="float", options={"default":0})
      */
-    private $chequeMvt;
+    private $cheque;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="cb_mvt", type="float")
+     * @ORM\Column(name="cb", type="float", options={"default":0})
      */
-    private $cbMvt;
+    private $cb;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="type_mvt", type="smallint")
+     * @ORM\Column(name="type_transaction", type="smallint")
      */
-    private $typeMvt;
+    private $typeTransaction;
 
 
     /**
@@ -73,41 +78,34 @@ class Cash_desk
         return $this->id;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getDateHeure()
+    {
+        return $this->dateHeure;
+    }
 
     /**
-     * Set dateTime
-     *
-     * @param \DateTime $dateTime
+     * @param \DateTime $dateHeure
      *
      * @return Cash_desk
      */
-    public function setDateTime($dateTime)
+    public function setDateHeure($dateHeure)
     {
-        $this->dateTime = $dateTime;
+        $this->dateHeure = $dateHeure;
 
         return $this;
     }
 
     /**
-     * Get dateTime
-     *
-     * @return \DateTime
-     */
-    public function getDateTime()
-    {
-        return $this->dateTime;
-    }
-
-    /**
-     * Set cashMvt
-     *
-     * @param float $cashMvt
+     * Set cash
      *
      * @return Cash_desk
      */
-    public function setCashMvt($cashMvt)
+    public function setEspeces($especes)
     {
-        $this->cashMvt = $cashMvt;
+        $this->especes = $especes;
 
         return $this;
     }
@@ -117,9 +115,9 @@ class Cash_desk
      *
      * @return float
      */
-    public function getCashMvt()
+    public function getEspeces()
     {
-        return $this->cashMvt;
+        return $this->especes;
     }
 
     /**
@@ -129,9 +127,9 @@ class Cash_desk
      *
      * @return Cash_desk
      */
-    public function setChequeMvt($chequeMvt)
+    public function setCheque($cheque)
     {
-        $this->chequeMvt = $chequeMvt;
+        $this->cheque = $cheque;
 
         return $this;
     }
@@ -141,9 +139,9 @@ class Cash_desk
      *
      * @return float
      */
-    public function getChequeMvt()
+    public function getCheque()
     {
-        return $this->chequeMvt;
+        return $this->cheque;
     }
 
     /**
@@ -153,9 +151,9 @@ class Cash_desk
      *
      * @return Cash_desk
      */
-    public function setCbMvt($cbMvt)
+    public function setCb($cb)
     {
-        $this->cbMvt = $cbMvt;
+        $this->cb = $cb;
 
         return $this;
     }
@@ -165,9 +163,9 @@ class Cash_desk
      *
      * @return float
      */
-    public function getCbMvt()
+    public function getCb()
     {
-        return $this->cbMvt;
+        return $this->cb;
     }
 
     /**
@@ -177,9 +175,9 @@ class Cash_desk
      *
      * @return Cash_desk
      */
-    public function setTypeMvt($typeMvt)
+    public function setTypeTransaction($typeTransaction)
     {
-        $this->typeMvt = $typeMvt;
+        $this->typeTransaction = $typeTransaction;
 
         return $this;
     }
@@ -189,9 +187,41 @@ class Cash_desk
      *
      * @return int
      */
-    public function getTypeMvt()
+    public function getTypeTransaction()
     {
-        return $this->typeMvt;
+        return $this->typeTransaction;
+    }
+
+    /**
+     * @return \UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param \UserBundle\Entity\User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return \ZeCashDeskBundle\Entity\Tickets
+     */
+    public function getTicket()
+    {
+        return $this->ticket;
+    }
+
+    /**
+     * @param \ZeCashDeskBundle\Entity\Tickets $ticket
+     */
+    public function setTicket($ticket)
+    {
+        $this->ticket = $ticket;
     }
 }
 

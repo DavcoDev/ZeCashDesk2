@@ -12,10 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Users
 {
-    /**
-     * @ORM\OneToOne(targetEntity="ZeCashDeskBundle\Entity\Cash_desk", mappedBy="Users")
-     */
-    private $cashdesk;
 
     /**
      * @var int
@@ -47,6 +43,13 @@ class Users
      * @ORM\Column(name="permissions", type="integer")
      */
     private $permissions;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    private $password;
 
 
     /**
@@ -130,6 +133,30 @@ class Users
     public function getPermissions()
     {
         return $this->permissions;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Users
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 }
 

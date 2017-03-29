@@ -16,8 +16,14 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><p class="navbar-text">{{ "now"|date("m/d/Y H:i:s") }}</p></li>
-                    <li><a class="navbar-brand" href="#">Ze Cash Desk</a></li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li><a class="navbar-brand" href="{{ path('logout') }}">Déconnexion</a></li>
+                    {% endif %}
+                    <li><p class="navbar-text">
+                            Bonjour {% if is_granted('ROLE_USER') %}{{ app.user.username }}{% endif %}</p></li>
+                    <li></li>
+                    <li><p id="heure" class="navbar-text"></p></li>
+                    <li><a class="navbar-brand" href="{{ path('base') }}">Ze Cash Desk</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
