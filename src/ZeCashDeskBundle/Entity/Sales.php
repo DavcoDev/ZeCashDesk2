@@ -111,21 +111,21 @@ class Sales
         $this->items = $items;
     }
 
-    /**
-     * @return \ZeCashDeskBundle\Entity\Cash_desk
-     */
-    public function getCashdesk()
-    {
-        return $this->cashdesk;
-    }
+//    /**
+//     * @return \ZeCashDeskBundle\Entity\Cash_desk
+//     */
+//    public function getCashdesk()
+//    {
+//        return $this->cashdesk;
+//    }
 
-    /**
-     * @param \ZeCashDeskBundle\Entity\Cash_desk $cashdesk
-     */
-    public function setCashdsk($cashdesk)
-    {
-        $this->cashdesk = $cashdesk;
-    }
+//    /**
+//     * @param \ZeCashDeskBundle\Entity\Cash_desk $cashdesk
+//     */
+//    public function setCashdsk($cashdesk)
+//    {
+//        $this->cashdesk = $cashdesk;
+//    }
 
 
 
