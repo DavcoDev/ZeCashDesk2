@@ -7,21 +7,24 @@
     <div id="refproduit" class="panel panel-primary"><!--reference et info produit-->
         <div class="panel-heading text-center">Référence produit</div>
         <div class="panel-body text-right">
-            <form action="{{ path('genCode') }}" method="get">
-                <input id="codebarre" type="text" name="" value="" placeholder="là où s'affichera le produit">
-            </form>
+            <input id="codebarre" type="text" placeholder="là où s'affichera le produit">
         </div>
     </div>
     <div id="globaldiv" class="panel-collapse">
         <div id="leftdiv" class="panel-collapse">
             <div id="ticket" class="panel panel-info">
-                <!-- Default panel contents -->
-                <div class="panel-heading text-center">Ticket n° ...</div>
-
-                <!-- Table -->
-                <table class="table">
-                    ...
+                <div id="numTicket" class="panel-heading text-center">Ticket n°:</div>
+                <table id="showTicket" class="table">
+                    <tr>
+                        <th>Quantité</th>
+                        <th>Produit</th>
+                        <th>P.U</th>
+                        <th>Total</th>
+                    </tr>
                 </table>
+                <div id="totalTicket" class="panel panel-info col-lg-offset-8 col-lg-4 col-md-offset-8 col-md-4 ">
+                    Total :
+                </div>
             </div>
         </div><!--end-leftdiv-->
 
@@ -29,7 +32,7 @@
             <div id="quantite" class="panel panel-info">
                 <div class="panel-heading text-center">Quantité</div>
                 <div class="panel-body text-right">
-                    <input class="panel-body text-right" type="text" value="1">
+                    <input id="qtyTicket" class="panel-body text-right" type="text" value="1">
                 </div>
             </div>
             <input type="submit" id="validation" class="btn btn-info" value="Valider"/>
