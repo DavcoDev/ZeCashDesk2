@@ -3,7 +3,7 @@ $(init);
 function init() {
     afficher();
     setInterval(afficher, 1000);
-    codebarre();
+    getGencode();
 }
 
 function afficher() {
@@ -14,15 +14,24 @@ function afficher() {
 }
 
 
-// function codebarre() {
-//
-//     $.ajax({
-//         url: '/terminal/genCode/{gencode}',
-//         method: 'GET',
-//     }).done(function (data) {
-//
-//
-//     });
-//     $('#ticket').append($_GET['codebarre']);
+function getGencode() {
 
+    $('#validation').click(function () {
+        $.ajax({
+            url: '/terminal/genCode',
+            method: 'POST',
+            dataType: "json",
+            data: {
+                codebarre: $('#codebarre').val()
+            },
+            success: function (data) {
+                console.log(data);
 
+                $('#showTicket').append('<tr><td>' + $('#qtyTicket').val() + '</td><td>' + data.nameItem + '</td><td>'
+                    + data.sellPrice + ' € </td><td>'+ $('#qtyTicket').val()*data.sellPrice +' €</td></tr>');
+                $('#codebarre').val('');
+            }
+        });
+    });
+
+}
