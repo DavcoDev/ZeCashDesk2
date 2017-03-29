@@ -4,7 +4,6 @@ $(init);
 function init() {
     afficher();
 
-    getItemByGencode();
     setInterval(afficher, 1000);
     getGencode();
 }
@@ -30,13 +29,9 @@ function getGencode() {
                 console.log(data);
 
                 $('#showTicket').append('<tr><td>' + $('#qtyTicket').val() + '</td><td>' + data.nameItem + '</td><td>'
-                    + data.sellPrice + ' € </td><td>'+ $('#qtyTicket').val()*data.sellPrice +' €</td></tr>');
+                    + data.sellPrice + ' € </td><td>' + $('#qtyTicket').val() * data.sellPrice + ' €</td></tr>');
                 $('#codebarre').val('');
             }
         });
     });
-
-function afficherArticle(category, nameItem, sellPrice, tva) {
-    $('#liste').append('<h0><u><b>' + category + '</u></b></h0> Tva:' + tva
-        + '<br><dd>' + nameItem + ' '+sellPrice+'<br>');
 }
