@@ -92,3 +92,20 @@ li {
     margin-left: 50%;
 }
 
+#ref{
+    display: flex;
+}
+
+#refleft {
+    width: 75%;
+    text-align: center;
+}
+
+#refright{
+    width: 24%;
+}
+
+#codebarre{
+    width: 100%;
+    text-align: center;
+}
