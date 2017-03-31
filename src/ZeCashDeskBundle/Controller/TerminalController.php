@@ -11,6 +11,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use ZeCashDeskBundle\Entity\Tickets;
 
 
 /**
@@ -18,14 +19,15 @@ use Symfony\Component\Serializer\Serializer;
  *
  * @Route("terminal")
  */
-class TerminalController extends Controller {
-	/**
-	 * @Route("/genCode", name="genCode")
-	 * @param Request $request
-	 *
-	 * @return JsonResponse
-	 */
-	public function indexAction( Request $request )
+class TerminalController extends Controller
+{
+    /**
+     * @Route("/genCode", name="genCode")
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ZeCashDeskBundle:Items');
@@ -40,15 +42,33 @@ class TerminalController extends Controller {
         $item = $serializer->serialize($items, 'json');
         $item = json_decode($item);
 
-		return new JsonResponse( $item );
-	}
+        return new JsonResponse($item);
+    }
 
-	/**
-	 * @Security("has_role('ROLE_USER')")
-	 * @Route("/", name="terminal")
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 */
-	public function page_terminal() {
-		return $this->render( 'terminal.twig' );
-	}
+    /**
+     * @Security("has_role('ROLE_USER')")
+     * @Route("/", name="terminal")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function page_terminal()
+    {
+        return $this->render('terminal.twig');
+    }
+
+    /**
+     * Generated and initialized ticket number
+     *
+     * @Route("/numTicket", name="numTicket")
+     */
+    public function generateNumTicket()
+    {
+        $ticket = new Tickets();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($ticket);
+        $em->flush();
+        $ticket->setNumTicket($ticket->getId());
+
+        return $ticket->getNumTicket();
+    }
 }

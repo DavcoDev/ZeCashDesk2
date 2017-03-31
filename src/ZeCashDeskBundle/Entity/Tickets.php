@@ -27,6 +27,13 @@ class Tickets
      */
     private $id;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="num_ticket", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $numTicket;
 
     /**
      * Get id
@@ -54,6 +61,23 @@ class Tickets
     {
         $this->users = $users;
     }
+
+    /**
+     * @return int
+     */
+    public function getNumTicket(): int
+    {
+        return $this->numTicket;
+    }
+
+    /**
+     * @param int $numTicket
+     */
+    public function setNumTicket(int $numTicket)
+    {
+        $this->numTicket = $numTicket;
+    }
+
 
 
 }
