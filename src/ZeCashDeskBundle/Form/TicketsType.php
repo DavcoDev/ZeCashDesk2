@@ -16,9 +16,9 @@ class TicketsType extends AbstractType
     {
         $builder
             ->add('numTicket')
-            ->add('users', EntityType::class, array(
+            ->add('user', EntityType::class, array(
                 'class' => 'UserBundle\Entity\User',
-                'choice_label' => 'firstName'
+                'choice_label' => 'username'
             )
             );
     }

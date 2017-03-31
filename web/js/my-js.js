@@ -52,9 +52,16 @@ function getGencode() {
 
 
 function initTicket() {
+    $('#validation').click(
+        $.ajax({
+            url: '/terminal/numTicket',
+            method: 'GET'
+        }).done(function (data) {
 
-    $('#numTicket').click(function () {
-        $.ajax({})
-    });
+            $('#numTicket').html(data);
+        })
+    );
+
+
 }
 
