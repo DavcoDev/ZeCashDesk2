@@ -10,4 +10,5 @@ namespace ZeCashDeskBundle\Repository;
  */
 class TicketsRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

@@ -5,7 +5,8 @@ namespace ZeCashDeskBundle\Controller;
 use ZeCashDeskBundle\Entity\Tickets;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Ticket controller.
@@ -36,6 +37,8 @@ class TicketsController extends Controller
      *
      * @Route("/new", name="tickets_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -62,6 +65,8 @@ class TicketsController extends Controller
      *
      * @Route("/{id}", name="tickets_show")
      * @Method("GET")
+     * @param Tickets $ticket
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Tickets $ticket)
     {
@@ -78,6 +83,9 @@ class TicketsController extends Controller
      *
      * @Route("/{id}/edit", name="tickets_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Tickets $ticket
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Tickets $ticket)
     {
@@ -103,6 +111,9 @@ class TicketsController extends Controller
      *
      * @Route("/{id}", name="tickets_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Tickets $ticket
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Tickets $ticket)
     {
@@ -130,7 +141,7 @@ class TicketsController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('tickets_delete', array('id' => $ticket->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
+
 }
