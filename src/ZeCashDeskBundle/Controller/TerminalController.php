@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -52,19 +53,30 @@ class TerminalController extends Controller {
 		return $this->render( 'terminal.twig' );
 	}
 
-	/**
-	 * Generated and initialized ticket number
-	 *
-	 * @Route("/numTicket", name="numTicket")
-	 */
-	public function generateNumTicket() {
-		$ticket = new Tickets();
+    /**
+     * Generated and initialized ticket number
+     *
+     * @Route("/numTicket", name="numTicket")
+     */
+    public function generateNumTicket()
+    {
+        $user = $this->getUser();
 
-		$em = $this->getDoctrine()->getManager();
-		$em->persist( $ticket );
-		$em->flush();
-		$ticket->setNumTicket( $ticket->getId() );
+        $ticket = new Tickets();
+        $ticket->setUser($user);
 
-		return $ticket->getNumTicket();
-	}
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($ticket);
+        $em->flush();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $n = $ticket->getId();
+        $num = $serializer->serialize($n, 'json');
+        $num = json_decode($num);
+
+        return new JsonResponse($num);
+    }
 }

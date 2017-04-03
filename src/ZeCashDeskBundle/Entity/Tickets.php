@@ -10,11 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="tickets")
  * @ORM\Entity(repositoryClass="ZeCashDeskBundle\Repository\TicketsRepository")
  */
-class Tickets {
-	/**
-	 * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-	 */
-	private $users;
+class Tickets
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     */
+    private $user;
 
 
 	/**
@@ -26,13 +27,6 @@ class Tickets {
 	 */
 	private $id;
 
-	/**
-	 * @var int
-	 *
-	 * @ORM\Column(name="num_ticket", type="integer")
-	 *
-	 */
-	private $numTicket;
 
 	/**
 	 * Get id
@@ -44,32 +38,21 @@ class Tickets {
 	}
 
 
-	/**
-	 * @return \UserBundle\Entity\User
-	 */
-	public function getUsers() {
-		return $this->users;
-	}
+    /**
+     * @return \UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 
-	/**
-	 * @param \UserBundle\Entity\User $users
-	 */
-	public function setUsers( $users ) {
-		$this->users = $users;
-	}
+    /**
+     * @param \UserBundle\Entity\User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getNumTicket(): int {
-		return $this->numTicket;
-	}
-
-	/**
-	 * @param int $numTicket
-	 */
-	public function setNumTicket( int $numTicket ) {
-		$this->numTicket = $numTicket;
-	}
 }
 
