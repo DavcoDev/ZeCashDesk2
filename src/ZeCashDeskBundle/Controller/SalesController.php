@@ -14,7 +14,35 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  */
 class SalesController extends Controller
 {
-    /**
+	/**
+	 * @Route("/insert", name="sale_insert")
+	 * @param Request $request
+	 *
+	 * @return JsonResponse
+	 */
+	public function insertAction( Request $request ) {
+		$scanned = new Sales();
+
+		$form = $this->createForm( SalesType::class );
+		$form->handleRequest( $request );
+
+		if ( $form->isSubmitted() && $form->isValid() ) {
+			$c = $form->getData();
+			$c->setTickets_id('1');
+
+			$em = $this->getDoctrine()->getManager();
+			$em->persist( $scanned );
+			$em->flush();
+
+			return new JsonResponse(array('')); // revenir à my-js
+
+
+		}
+		return new JsonResponse(array(''));
+	}
+
+
+	/**
      * Lists all sale entities.
      *
      * @Route("/", name="sales_index")
