@@ -5,11 +5,11 @@ function init() {
     afficher();
 
     setInterval(afficher, 1000);
-<<<<<<< HEAD
+
     scanItems();
-=======
+
     scanGencode();
->>>>>>> Gestion_variables_ticket
+
 }
 
 function afficher() {
@@ -34,7 +34,7 @@ function scanGencode() {
     $('#validation').click(getGencode);
 }
 
-<<<<<<< HEAD
+
 function getGencode() {
     $.ajax({
         url: '/terminal/genCode',
@@ -71,7 +71,7 @@ function initTicket() {
 
 }
 
-=======
+
 function scanGencode() {
     $('#validation').click(function () {
         $.ajax({
@@ -122,4 +122,4 @@ function insertSales(itemId) {
         }
     });
 }
->>>>>>> Gestion_variables_ticket
+
