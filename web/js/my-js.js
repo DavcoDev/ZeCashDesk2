@@ -22,7 +22,7 @@ function scanItems() {
     scanGencode();
 
     if (ticket === false) initTicket();
-    
+
 }
 
 function scanGencode() {
@@ -35,7 +35,6 @@ function scanGencode() {
 
     $('#validation').click(getGencode);
 }
-
 
 function getGencode() {
     $.ajax({
@@ -62,7 +61,6 @@ function getGencode() {
         }
     });
 }
-
 
 function initTicket() {
     $('#validation').click(
