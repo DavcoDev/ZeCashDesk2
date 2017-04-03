@@ -97,6 +97,6 @@ class Sales {
 	public function setItems( $items ) {
 		$this->items = $items;
 	}
-	
+
 }
 
