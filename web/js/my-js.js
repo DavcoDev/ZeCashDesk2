@@ -38,14 +38,19 @@ function getGencode() {
             codebarre: $('#codebarre').val()
         },
         success: function (data) {
+            console.log(data);
             $('#refleft').val('');
-            $('#refleft').html('<b>gencode: </b>' + data.gencode + '<b>   produit: </b>' + data.nameItem
-                + '<b>   description: </b>' + data.description + '<b>   rayon: </b>' + data.category
-                + '<b>   prix: </b>' + data.sellPrice + ' €');
+            if ( !$.isEmptyObject(data)) {
+                $('#refleft').html('<b>gencode: </b>' + data.gencode + '<b>   produit: </b>' + data.nameItem
+                    + '<b>   description: </b>' + data.description + '<b>   rayon: </b>' + data.category
+                    + '<b>   prix: </b>' + data.sellPrice + ' €');
 
-            $('#showTicket').append('<tr><td>' + $('#qtyTicket').val() + '</td><td>' + data.nameItem + '</td><td>'
-                + data.sellPrice + ' € </td><td>' + $('#qtyTicket').val() * data.sellPrice + ' €</td></tr>');
-            $('#codebarre').val('');
+                $('#showTicket').append('<tr><td>' + $('#qtyTicket').val() + '</td><td>' + data.nameItem + '</td><td>'
+                    + data.sellPrice + ' € </td><td>' + $('#qtyTicket').val() * data.sellPrice + ' €</td></tr>');
+                $('#codebarre').val('');
+            }else {
+                $('#refleft').html('<b>Ce produit n\'existe pas ou Erreur de saisie !!!!<b>');
+            }
         }
     });
 }
