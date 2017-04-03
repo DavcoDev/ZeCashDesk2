@@ -1,13 +1,12 @@
 var itemId;
+
 $(init);
 
 function init() {
     afficher();
-
     setInterval(afficher, 1000);
 
     scanItems();
-
 }
 
 function afficher() {
@@ -18,17 +17,15 @@ function afficher() {
 
 function scanItems() {
     scanGencode();
-    initTicket();
+    // initTicket();
 }
 
 function scanGencode() {
-
     $('#codebarre').keypress((function (event) {
         if (event.keyCode == 13) {
             getGencode();
         }
     }));
-
     $('#validation').click(getGencode);
 }
 
@@ -50,6 +47,7 @@ function getGencode() {
             $('#showTicket').append('<tr><td>' + $('#qtyTicket').val() + '</td><td>' + data.nameItem + '</td><td>'
                 + data.sellPrice + ' € </td><td>' + $('#qtyTicket').val() * data.sellPrice + ' €</td></tr>');
             $('#codebarre').val('');
+            insertSales(data.id);
         }
     });
 }
@@ -61,62 +59,39 @@ function initTicket() {
             url: '/terminal/numTicket',
             method: 'GET'
         }).done(function (data) {
-
             $('#numTicket').html(data);
         })
     );
-
-
 }
 
-//
-// function scanGencode() {
-//     $('#validation').click(function () {
-//         $.ajax({
-//             url: '/terminal/genCode',
-//             method: 'POST',
-//             dataType: "json",
-//             data: {
-//                 codebarre: $('#codebarre').val()
-//             },
-//             success: function (data) {
-//                 $('#showTicket').append('<tr><td>' + $('#qtyTicket').val() + '</td><td>' + data.nameItem + '</td><td>'
-//                     + data.sellPrice + ' € </td><td>' + $('#qtyTicket').val() * data.sellPrice + ' €</td></tr>');
-//                 $('#codebarre').val('');
-//                 itemId = data.id;
-//             }
-//         });
-//     });
-//     insertSales(itemId); //J'envoie à insertSales l'id de Items
-// }
-
-function annulation() {
+function annulation(saleId) {
     $('#annulation').click(function () {
         $.ajax({
-            url: '/sales/',
+            url: '/sales/' + saleId,
             method: 'DELETE',
             dataType: "json",
             data: {
                 salesId: $('#codebarre').val()
             },
             success: function (data) {
+
             }
         });
     });
 }
 
-function insertSales(itemId) {
+function insertSales(itemId, ticketId) {
     $.ajax({
-        url: '/sales/insert',
+        url: '/sales/insert/' + itemId + '/' + ticketId,
         method: 'POST',
         dataType: "json",
         data: {
             itemId: itemId,
-            // numTicket: $('#numTicket').val(),
-            numTicket: 1,
-            salesQty: $('#quantite').val()
+            ticketId: ticketId,
+            salesQty: $('#qtyTicket').val()
         },
         success: function (data) {
+            
         }
     });
 }

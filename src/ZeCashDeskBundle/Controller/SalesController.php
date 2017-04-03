@@ -2,11 +2,15 @@
 
 namespace ZeCashDeskBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Response;
+use ZeCashDeskBundle\Entity\Items;
 use ZeCashDeskBundle\Entity\Sales;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use ZeCashDeskBundle\Entity\Tickets;
 
 /**
  * Sale controller.
@@ -15,31 +19,30 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class SalesController extends Controller {
 	/**
-	 * @Route("/insert", name="sale_insert")
+	 * @Route("/insert/{id}/{ticketId}", name="sale_insert")
 	 * @param Request $request
+	 * @ParamConverter("Tickets", class="ZeCashDeskBundle:Tickets", options={"id" = "ticketId"})
 	 *
-	 * @return JsonResponse
+	 * @return Response
 	 */
-	public function insertAction( Request $request ) {
+	public function insertAction( Request $request, Items $item, Tickets $tickets ) {
 		$scanned = new Sales();
 
-		$form = $this->createForm( SalesType::class );
-		$form->handleRequest( $request );
+		$scanned->setSalesQty( $request->get( 'salesQty' ) );
 
-		if ( $form->isSubmitted() && $form->isValid() ) {
-			$c = $form->getData();
-			$c->setTickets_id( '1' );
+//		$itemId = $request->get( 'itemId' );
+//		$em         = $this->getDoctrine()->getManager();
+//		$repository = $em->getRepository( 'ZeCashDeskBundle:Items' );//
+//		$item = $repository->find($itemId);
 
-			$em = $this->getDoctrine()->getManager();
-			$em->persist( $scanned );
-			$em->flush();
+		$scanned->setItems( $item );
+		$scanned->setTickets( $tickets );
 
-			return new JsonResponse( array( '' ) ); // revenir à my-js
-
-
-		}
-
-		return new JsonResponse( array( '' ) );
+		$em = $this->getDoctrine()->getManager();
+		$em->persist( $scanned );
+		$em->flush();
+//		dump( $scanned->getId() );
+		return new Response( $scanned->getId() ); // revenir à my-js
 	}
 
 
