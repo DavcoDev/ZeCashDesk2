@@ -1,4 +1,5 @@
 var itemId;
+var ticket = false;
 $(init);
 
 function init() {
@@ -17,8 +18,11 @@ function afficher() {
 }
 
 function scanItems() {
+
     scanGencode();
-    initTicket();
+
+    if (ticket === false) initTicket();
+
 }
 
 function scanGencode() {
@@ -31,7 +35,6 @@ function scanGencode() {
 
     $('#validation').click(getGencode);
 }
-
 
 function getGencode() {
     $.ajax({
@@ -59,7 +62,6 @@ function getGencode() {
     });
 }
 
-
 function initTicket() {
     $('#validation').click(
         $.ajax({
@@ -68,34 +70,12 @@ function initTicket() {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $('#numTicket').html('Ticket n° : '+ data);
+                $('#numTicket').html('Ticket n° : ' + data);
+                ticket = true;
             }
         })
     );
-
-
 }
-
-//
-// function scanGencode() {
-//     $('#validation').click(function () {
-//         $.ajax({
-//             url: '/terminal/genCode',
-//             method: 'POST',
-//             dataType: "json",
-//             data: {
-//                 codebarre: $('#codebarre').val()
-//             },
-//             success: function (data) {
-//                 $('#showTicket').append('<tr><td>' + $('#qtyTicket').val() + '</td><td>' + data.nameItem + '</td><td>'
-//                     + data.sellPrice + ' € </td><td>' + $('#qtyTicket').val() * data.sellPrice + ' €</td></tr>');
-//                 $('#codebarre').val('');
-//                 itemId = data.id;
-//             }
-//         });
-//     });
-//     insertSales(itemId); //J'envoie à insertSales l'id de Items
-// }
 
 function annulation() {
     $('#annulation').click(function () {
