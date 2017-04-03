@@ -18,11 +18,11 @@ class SalesType extends AbstractType
             ->add('salesQty')
             ->add('items', EntityType::class, array(
                 'class' => 'ZeCashDeskBundle\Entity\Items',
-                'choice_label' => 'name_item'
+                'choice_label' => 'id'
             ))
             ->add('tickets', EntityType::class, array(
                 'class' => 'ZeCashDeskBundle\Entity\Tickets',
-                'choice_label' => 'id'
+                'choice_label' => 'num_ticket'
             ))
         ;
     }
