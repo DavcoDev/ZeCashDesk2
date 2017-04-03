@@ -15,7 +15,7 @@ class Tickets
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      */
-    private $users;
+    private $user;
 
 
     /**
@@ -27,13 +27,6 @@ class Tickets
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="num_ticket", type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $numTicket;
 
     /**
      * Get id
@@ -49,36 +42,18 @@ class Tickets
     /**
      * @return \UserBundle\Entity\User
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
+        return $this->user;
     }
 
     /**
-     * @param \UserBundle\Entity\User $users
+     * @param \UserBundle\Entity\User $user
      */
-    public function setUsers($users)
+    public function setUser($user)
     {
-        $this->users = $users;
+        $this->user = $user;
     }
-
-    /**
-     * @return int
-     */
-    public function getNumTicket(): int
-    {
-        return $this->numTicket;
-    }
-
-    /**
-     * @param int $numTicket
-     */
-    public function setNumTicket(int $numTicket)
-    {
-        $this->numTicket = $numTicket;
-    }
-
-
 
 }
 
