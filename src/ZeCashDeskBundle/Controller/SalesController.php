@@ -162,7 +162,7 @@ class SalesController extends Controller
      * @Method("DELETE")
      * @param Request $request
      * @param Sales $sale
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return JsonResponse
      */
     public function deleteAction(Request $request, Sales $sale)
     {
@@ -174,8 +174,15 @@ class SalesController extends Controller
             $em->remove($sale);
             $em->flush();
         }
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
 
-        return $this->redirectToRoute('sales_index');
+        $id = $sale->getId();
+        $idSale = $serializer->serialize($id, 'json');
+        $idSale = json_decode($idSale);
+
+        return new JsonResponse($idSale);
     }
 
     /**

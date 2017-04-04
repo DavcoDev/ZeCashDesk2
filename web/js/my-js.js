@@ -1,9 +1,9 @@
+var cancel = false;
 var itemId;
 var idSales;
 var ticket = false;
 var idTicket;
 var ticketTab = [];
-var lineTab;
 var totalLine;
 var totalTicket;
 $(init);
@@ -33,7 +33,7 @@ function scanGencode() {
         }
     }));
     $('#validation').click(getGencode);
-    // $('#annulation').click(annulation());
+    $('#annulation').click(annulation);
 }
 
 function getGencode() {
@@ -45,7 +45,6 @@ function getGencode() {
             codebarre: $('#codebarre').val()
         },
         success: function (data) {
-            // console.log(data);
             $('#refleft').val('');
             if (!$.isEmptyObject(data)) {
                 $('#refleft').html('<b>gencode: </b>' + data.gencode + '<b>   produit: </b>' + data.nameItem
@@ -81,20 +80,22 @@ function initTicket() {
     );
 }
 
-// function annulation() {
-//     $.ajax({
-//         url: '/sales/' + idSales,
-//         method: 'DELETE',
-//         dataType: "json",
-//         success: function (data) {
-//         }
-//     });
-// }
+function annulation() {
+    $.ajax({
+        url: '/sales/' + idSales,
+        method: 'DELETE',
+        dataType: "json",
+        success: function () {
+            cancel = true;
+            updateTicketView();
+        }
+    });
+}
 
 function insertSales() {
     $.ajax({
         url: '/sales/insert/' + itemId + '/' + idTicket,
-        method: 'GET',
+        method: 'POST',
         dataType: "json",
         data: {
             itemId: itemId,
@@ -110,14 +111,21 @@ function insertSales() {
 function updateTicketView() {
     $('#showTicket').html('');
     totalTicket = 0;
+    if (cancel) {
+        console.log('valeur de tickettab : '+ticketTab)
+        ticketTab.pop();
+        console.log('valeur de tickettab apres : '+ticketTab)
+
+        cancel = false;
+    }
     for (var i = 0; i < ticketTab.length; i++) {
         totalTicket += ticketTab[i][3];
-
+console.log('ok ok ok ')
         $('#showTicket').append('<tr><td>' + ticketTab[i][0] + '</td><td>' + ticketTab[i][1] + '</td><td>'
             + ticketTab[i][2] + ' € </td><td>' + ticketTab[i][3] + ' €</td></tr>');
         $('#codebarre').val('');
 
-        $('#totalTicket').html('Total : ' + totalTicket);
+        $('#totalTicket').html('Total  :   ' + totalTicket + ' €');
     }
 }
 

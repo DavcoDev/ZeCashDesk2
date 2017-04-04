@@ -111,3 +111,8 @@ li {
     width: 100%;
     text-align: center;
 }
+
+#totalTicket{
+    text-align: center;
+    font-size: medium;
+}
