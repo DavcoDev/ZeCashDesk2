@@ -112,15 +112,11 @@ function updateTicketView() {
     $('#showTicket').html('');
     totalTicket = 0;
     if (cancel) {
-        console.log('valeur de tickettab : '+ticketTab)
         ticketTab.pop();
-        console.log('valeur de tickettab apres : '+ticketTab)
-
         cancel = false;
     }
     for (var i = 0; i < ticketTab.length; i++) {
         totalTicket += ticketTab[i][3];
-console.log('ok ok ok ')
         $('#showTicket').append('<tr><td>' + ticketTab[i][0] + '</td><td>' + ticketTab[i][1] + '</td><td>'
             + ticketTab[i][2] + ' € </td><td>' + ticketTab[i][3] + ' €</td></tr>');
         $('#codebarre').val('');
