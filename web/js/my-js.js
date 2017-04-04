@@ -74,6 +74,7 @@ function initTicket() {
             $('#numTicket').html('Ticket n° : ' + data);
             ticket = true;
             idTicket = data;
+            $('#totalTicket').html('Total  :  0 €');
         }
     })
 }
