@@ -1,4 +1,5 @@
 var itemId;
+var numTicket;
 var ticket = false;
 $(init);
 
@@ -72,6 +73,7 @@ function initTicket() {
                 console.log(data);
                 $('#numTicket').html('Ticket n° : ' + data);
                 ticket = true;
+                numTicket=data;
             }
         })
     );
@@ -100,7 +102,7 @@ function insertSales(itemId) {
         data: {
             itemId: itemId,
             // numTicket: $('#numTicket').val(),
-            numTicket: 1,
+            numTicket: numTicket,
             salesQty: $('#quantite').val()
         },
         success: function (data) {
