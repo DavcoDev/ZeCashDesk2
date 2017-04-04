@@ -1,8 +1,9 @@
+var cancel = false;
 var itemId;
 var idSales;
 var ticket = false;
 var idTicket;
-var ticketTab = new Array();
+var ticketTab = [];
 var totalLine;
 var totalTicket;
 $(init);
@@ -32,6 +33,7 @@ function scanGencode() {
         }
     }));
     $('#validation').click(getGencode);
+    $('#annulation').click(annulation);
 }
 
 function getGencode() {
@@ -43,7 +45,6 @@ function getGencode() {
             codebarre: $('#codebarre').val()
         },
         success: function (data) {
-            // console.log(data);
             $('#refleft').val('');
             if (!$.isEmptyObject(data)) {
                 $('#refleft').html('<b>gencode: </b>' + data.gencode + '<b>   produit: </b>' + data.nameItem
@@ -53,12 +54,10 @@ function getGencode() {
                 totalLine = $('#qtyTicket').val() * data.sellPrice;
                 var ligneAchats = [$('#qtyTicket').val(), data.nameItem, data.sellPrice, totalLine];
                 ticketTab.push(ligneAchats);
-                updateTicketView(ticketTab);
+                updateTicketView();
                 itemId = data.id;
                 insertSales();
                 $('#qtyTicket').val('1');
-                // $('#annulation').click(annulation(idSales));
-
             } else {
                 $('#refleft').html('<b>Ce produit n\'existe pas ou Erreur de saisie !!!!<b>');
             }
@@ -82,21 +81,21 @@ function initTicket() {
 }
 
 function annulation() {
-    $('#annulation').click(function () {
-        $.ajax({
-            url: '/sales/' + idSales,
-            method: 'DELETE',
-            dataType: "json",
-            success: function (data) {
-            }
-        });
+    $.ajax({
+        url: '/sales/' + idSales,
+        method: 'DELETE',
+        dataType: "json",
+        success: function () {
+            cancel = true;
+            updateTicketView();
+        }
     });
 }
 
 function insertSales() {
     $.ajax({
         url: '/sales/insert/' + itemId + '/' + idTicket,
-        method: 'GET',
+        method: 'POST',
         dataType: "json",
         data: {
             itemId: itemId,
@@ -109,16 +108,20 @@ function insertSales() {
     });
 }
 
-function updateTicketView(ticketTab) {
+function updateTicketView() {
     $('#showTicket').html('');
+    totalTicket = 0;
+    if (cancel) {
+        ticketTab.pop();
+        cancel = false;
+    }
     for (var i = 0; i < ticketTab.length; i++) {
-        lineTab = ticketTab[i];
         totalTicket += ticketTab[i][3];
-
         $('#showTicket').append('<tr><td>' + ticketTab[i][0] + '</td><td>' + ticketTab[i][1] + '</td><td>'
             + ticketTab[i][2] + ' € </td><td>' + ticketTab[i][3] + ' €</td></tr>');
         $('#codebarre').val('');
-        $('#totalTicket').html('Total : ' + totalTicket);
+
+        $('#totalTicket').html('Total  :   ' + totalTicket + ' €');
     }
 }
 
