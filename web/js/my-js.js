@@ -27,7 +27,7 @@ function scanItems() {
 
 function scanGencode() {
     $('#codebarre').keypress((function (event) {
-        if (event.keyCode == 13) {
+        if (event.keyCode === 13) {
             getGencode();
         }
     }));
@@ -51,7 +51,7 @@ function getGencode() {
                     + '<b>   prix: </b>' + data.sellPrice + ' €');
 
                 totalLine = $('#qtyTicket').val() * data.sellPrice;
-                var ligneAchats = new Array($('#qtyTicket').val(), data.nameItem, data.sellPrice, totalLine);
+                var ligneAchats = [$('#qtyTicket').val(), data.nameItem, data.sellPrice, totalLine];
                 ticketTab.push(ligneAchats);
                 updateTicketView(ticketTab);
                 itemId = data.id;
@@ -95,13 +95,13 @@ function annulation() {
 
 function insertSales() {
     $.ajax({
-        url: '/sales/insert',
-        method: 'POST',
+        url: '/sales/insert/' + itemId + '/' + idTicket,
+        method: 'GET',
         dataType: "json",
         data: {
             itemId: itemId,
             numTicket: idTicket,
-            salesQty: $('#quantite').val()
+            salesQty: $('#qtyTicket').val()
         },
         success: function (data) {
             idSales = data;
