@@ -66,18 +66,16 @@ function getGencode() {
 }
 
 function initTicket() {
-    $('#validation').click(
-        $.ajax({
-            url: '/terminal/numTicket',
-            method: 'POST',
-            dataType: "json",
-            success: function (data) {
-                $('#numTicket').html('Ticket n° : ' + data);
-                ticket = true;
-                idTicket = data;
-            }
-        })
-    );
+    $.ajax({
+        url: '/terminal/numTicket',
+        method: 'POST',
+        dataType: "json",
+        success: function (data) {
+            $('#numTicket').html('Ticket n° : ' + data);
+            ticket = true;
+            idTicket = data;
+        }
+    })
 }
 
 function annulation() {
@@ -114,6 +112,9 @@ function updateTicketView() {
     if (cancel) {
         ticketTab.pop();
         cancel = false;
+        if (totalTicket === 0) {
+            $('#totalTicket').html('Total  :  0 €');
+        }
     }
     for (var i = 0; i < ticketTab.length; i++) {
         totalTicket += ticketTab[i][3];

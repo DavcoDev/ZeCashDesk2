@@ -30,7 +30,7 @@ class SalesController extends Controller
      * @param Items $item
      * @param Tickets $tickets
      * @return JsonResponse
-     * @ParamConverter("Tickets", class="ZeCashDeskBundle:Tickets", options={"id" = "ticketId"})
+     * @ParamConverter("tickets", class="ZeCashDeskBundle:Tickets", options={"id" = "ticketId"})
      *
      */
     public function insertAction(Request $request, Items $item, Tickets $tickets)
