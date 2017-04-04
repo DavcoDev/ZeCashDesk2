@@ -1,23 +1,27 @@
 var itemId;
-
+var idSales;
+var ticket = false;
+var idTicket;
+var ticketTab = new Array();
+var totalLine;
+var totalTicket;
 $(init);
 
 function init() {
     afficher();
     setInterval(afficher, 1000);
-
     scanItems();
 }
 
 function afficher() {
     var jours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-    lD = new Date();
+    var lD = new Date();
     document.getElementById('heure').innerHTML = '' + jours[lD.getDay()] + '  ' + lD.toLocaleString() + '';
 }
 
 function scanItems() {
     scanGencode();
-    // initTicket();
+    if (ticket === false) initTicket();
 }
 
 function scanGencode() {
@@ -29,7 +33,6 @@ function scanGencode() {
     $('#validation').click(getGencode);
 }
 
-
 function getGencode() {
     $.ajax({
         url: '/terminal/genCode',
@@ -40,59 +43,80 @@ function getGencode() {
         },
         success: function (data) {
             $('#refleft').val('');
-            $('#refleft').html('<b>gencode: </b>' + data.gencode + '<b>   produit: </b>' + data.nameItem
-                + '<b>   description: </b>' + data.description + '<b>   rayon: </b>' + data.category
-                + '<b>   prix: </b>' + data.sellPrice + ' €');
+            if (!$.isEmptyObject(data)) {
+                $('#refleft').html('<b>gencode: </b>' + data.gencode + '<b>   produit: </b>' + data.nameItem
+                    + '<b>   description: </b>' + data.description + '<b>   rayon: </b>' + data.category
+                    + '<b>   prix: </b>' + data.sellPrice + ' €');
 
-            $('#showTicket').append('<tr><td>' + $('#qtyTicket').val() + '</td><td>' + data.nameItem + '</td><td>'
-                + data.sellPrice + ' € </td><td>' + $('#qtyTicket').val() * data.sellPrice + ' €</td></tr>');
-            $('#codebarre').val('');
-            insertSales(data.id);
+                totalLine = $('#qtyTicket').val() * data.sellPrice;
+                var ligneAchats = new Array($('#qtyTicket').val(), data.nameItem, data.sellPrice, totalLine);
+                ticketTab.push(ligneAchats);
+                updateTicketView(ticketTab);
+                itemId = data.id;
+                insertSales();
+                $('#qtyTicket').val('1');
+                // $('#annulation').click(annulation(idSales));
+
+            } else {
+                $('#refleft').html('<b>Ce produit n\'existe pas ou Erreur de saisie !!!!<b>');
+            }
         }
     });
 }
-
 
 function initTicket() {
     $('#validation').click(
         $.ajax({
             url: '/terminal/numTicket',
-            method: 'GET'
-        }).done(function (data) {
-            $('#numTicket').html(data);
+            method: 'POST',
+            dataType: "json",
+            success: function (data) {
+                $('#numTicket').html('Ticket n° : ' + data);
+                ticket = true;
+                idTicket = data;
+            }
         })
     );
 }
 
-function annulation(saleId) {
+function annulation() {
     $('#annulation').click(function () {
         $.ajax({
-            url: '/sales/' + saleId,
+            url: '/sales/' + idSales,
             method: 'DELETE',
             dataType: "json",
-            data: {
-                salesId: $('#codebarre').val()
-            },
             success: function (data) {
-
             }
         });
     });
 }
 
-function insertSales(itemId, ticketId) {
+function insertSales() {
     $.ajax({
-        url: '/sales/insert/' + itemId + '/' + ticketId,
+        url: '/sales/insert',
         method: 'POST',
         dataType: "json",
         data: {
             itemId: itemId,
-            ticketId: ticketId,
-            salesQty: $('#qtyTicket').val()
+            numTicket: idTicket,
+            salesQty: $('#quantite').val()
         },
         success: function (data) {
-            
+            idSales = data;
         }
     });
+}
+
+function updateTicketView(ticketTab) {
+    $('#showTicket').html('');
+    for (var i = 0; i < ticketTab.length; i++) {
+        lineTab = ticketTab[i];
+        totalTicket += ticketTab[i][3];
+
+        $('#showTicket').append('<tr><td>' + ticketTab[i][0] + '</td><td>' + ticketTab[i][1] + '</td><td>'
+            + ticketTab[i][2] + ' € </td><td>' + ticketTab[i][3] + ' €</td></tr>');
+        $('#codebarre').val('');
+        $('#totalTicket').html('Total : ' + totalTicket);
+    }
 }
 

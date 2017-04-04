@@ -27,14 +27,6 @@ class Tickets {
 	private $id;
 
 	/**
-	 * @var int
-	 *
-	 * @ORM\Column(name="num_ticket", type="integer")
-	 *
-	 */
-	private $numTicket;
-
-	/**
 	 * Get id
 	 *
 	 * @return int
@@ -56,20 +48,6 @@ class Tickets {
 	 */
 	public function setUsers( $users ) {
 		$this->users = $users;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getNumTicket(): int {
-		return $this->numTicket;
-	}
-
-	/**
-	 * @param int $numTicket
-	 */
-	public function setNumTicket( int $numTicket ) {
-		$this->numTicket = $numTicket;
 	}
 }
 
