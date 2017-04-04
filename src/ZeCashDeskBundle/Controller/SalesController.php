@@ -2,10 +2,20 @@
 
 namespace ZeCashDeskBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use ZeCashDeskBundle\Entity\Items;
 use ZeCashDeskBundle\Entity\Sales;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use ZeCashDeskBundle\Entity\Tickets;
 
 /**
  * Sale controller.
@@ -14,6 +24,46 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  */
 class SalesController extends Controller
 {
+    /**
+     * @Route("/insert/{id}/{ticketId}", name="sale_insert")
+     * @param Request $request
+     * @param Items $item
+     * @param Tickets $tickets
+     * @return JsonResponse
+     * @ParamConverter("tickets", class="ZeCashDeskBundle:Tickets", options={"id" = "ticketId"})
+     *
+     */
+    public function insertAction(Request $request, Items $item, Tickets $tickets)
+    {
+        $scanned = new Sales();
+
+        $scanned->setSalesQty($request->get('salesQty'));
+
+//		$itemId = $request->get( 'itemId' );
+//		$em         = $this->getDoctrine()->getManager();
+//		$repository = $em->getRepository( 'ZeCashDeskBundle:Items' );//
+//		$item = $repository->find($itemId);
+
+        $scanned->setItems($item);
+        $scanned->setTickets($tickets);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($scanned);
+        $em->flush();
+//		dump( $scanned->getId() );
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $sc = $scanned->getId();
+        $idSale = $serializer->serialize($sc, 'json');
+        $idSale = json_decode($idSale);
+
+        return new JsonResponse($idSale);
+    }
+
+
     /**
      * Lists all sale entities.
      *
@@ -36,6 +86,8 @@ class SalesController extends Controller
      *
      * @Route("/new", name="sales_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function newAction(Request $request)
     {
@@ -62,6 +114,8 @@ class SalesController extends Controller
      *
      * @Route("/{id}", name="sales_show")
      * @Method("GET")
+     * @param Sales $sale
+     * @return Response
      */
     public function showAction(Sales $sale)
     {
@@ -78,6 +132,9 @@ class SalesController extends Controller
      *
      * @Route("/{id}/edit", name="sales_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Sales $sale
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function editAction(Request $request, Sales $sale)
     {
@@ -103,6 +160,9 @@ class SalesController extends Controller
      *
      * @Route("/{id}", name="sales_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Sales $sale
+     * @return JsonResponse
      */
     public function deleteAction(Request $request, Sales $sale)
     {
@@ -114,8 +174,15 @@ class SalesController extends Controller
             $em->remove($sale);
             $em->flush();
         }
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
 
-        return $this->redirectToRoute('sales_index');
+        $id = $sale->getId();
+        $idSale = $serializer->serialize($id, 'json');
+        $idSale = json_decode($idSale);
+
+        return new JsonResponse($idSale);
     }
 
     /**
@@ -130,7 +197,6 @@ class SalesController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('sales_delete', array('id' => $sale->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

@@ -1,44 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Salt</th>
-                <td>{{ user.salt }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{% if user.roles %}{{ user.roles|join(', ') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="col-md-offset-3 col-md-6">
+        <br>
+        <p class="label label-default center-block" style="font-size:  x-large">Utilisateur</p><br>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <table>
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th>Utilisateur</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>Mot de passe</th>
+                    <td>{{ user.password }}</td>
+                </tr>
+                <tr>
+                    <th>Salt</th>
+                    <td>{{ user.salt }}</td>
+                </tr>
+                <tr>
+                    <th>Roles</th>
+                    <td>{% if user.roles %}{{ user.roles|join(', ') }}{% endif %}</td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <ul>
+                <li>
+                    <a href="{{ path('user_index') }}">Retour à la liste</a>
+                </li>
+                <li>
+                    <a href="{{ path('user_edit', { 'id': user.id }) }}">Modifier</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Supprimer">
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}

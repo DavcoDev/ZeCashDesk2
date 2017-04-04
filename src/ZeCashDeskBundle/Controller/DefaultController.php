@@ -44,15 +44,4 @@ class DefaultController extends Controller
         return $this->render('page_hote2caisse.html.twig');
     }
 
-//    /**
-//     * @Security("has_role('ROLE_USER')")
-//     * @Route("/terminal", name="terminal")
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function page_terminal()
-//    {
-//        return $this->render('terminal.twig');
-//    }
-
-
 }
