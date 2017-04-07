@@ -2,11 +2,13 @@
 
 namespace ZeCashDeskBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use ZeCashDeskBundle\Entity\Cash_desk;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use ZeCashDeskBundle\Entity\Tickets;
 
 /**
  * Cash_desk controller.
@@ -15,6 +17,44 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class Cash_deskController extends Controller
 {
+    /**
+     * @Route("/insert/{id}", name="cashDesk_insert")
+     * @param Request $request
+     * @param Tickets $tickets
+     * @return Response
+     */
+    public function insertAction(Request $request, Tickets $tickets)
+    {
+        $user=$this->getUser();
+        $fundIn = new Cash_desk();
+
+        $fundIn->setCb($request->get('cbIn'));
+        $fundIn->setCheque($request->get('chqIn'));
+        $fundIn->setEspeces($request->get('espIn'));
+        $fundIn->setTypeTransaction($request->get('typeTransaction'));
+        $fundIn->setTicket($tickets);
+        $fundIn->setDateHeure(new \DateTime());
+        $fundIn->setUser($user);
+
+        dump($fundIn);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($fundIn);
+        $em->flush();
+
+        //$retour=$this->addFlash('success','Règlement effectué');
+
+       // $encoders = array(new XmlEncoder(), new JsonEncoder());
+        //$normalizers = array(new ObjectNormalizer());
+        //$serializer = new Serializer($normalizers, $encoders);
+
+        //$cash = $fundIn->getId();
+        //$cashOk = $serializer->serialize($cash, 'json');
+        //$cashOk = json_decode($cashOk);
+
+        return new Response($fundIn->getId());
+    }
+
+
     /**
      * Lists all cash_desk entities.
      *

@@ -6,6 +6,11 @@ var idTicket;
 var ticketTab = [];
 var totalLine;
 var totalTicket;
+var encaissement=0;
+var cbIn=0;
+var chqIn=0;
+var espIn=0;
+
 $(init);
 
 function init() {
@@ -34,6 +39,7 @@ function scanGencode() {
     }));
     $('#validation').click(getGencode);
     $('#annulation').click(annulation);
+    $('#reglement').click(reglement);
 }
 
 function getGencode() {
@@ -127,3 +133,47 @@ function updateTicketView() {
     }
 }
 
+function reglement() {
+    encaissement=0;
+    cbIn= parseFloat($('#cb').val());
+    chqIn= parseFloat($('#chq').val());
+    espIn= parseFloat($('#esp').val());
+    if (isNaN(cbIn))
+        cbIn=0;
+    if (isNaN(chqIn))
+        chqIn=0;
+    if (isNaN(espIn))
+        espIn=0;
+     encaissement= cbIn+chqIn+espIn;
+    alert('Réglé: ' + encaissement+' €');
+    if (encaissement == totalTicket) {
+        insertCashDesk();
+    }
+    else {
+        encaissement=0;
+        $('#cb').val(0);
+        $('#esp').val(0);
+        $('#chq').val(0);
+    }
+}
+
+function insertCashDesk() {
+    $.ajax({
+        url: '/cash_desk/insert/'+idTicket,
+        method: 'POST',
+        dataType: "json",
+        data: {
+            cbIn: cbIn,
+            espIn: espIn,
+            chqIn: chqIn,
+            typeTransaction: 1
+        },
+        success: function () {
+            alert('Paiement validé.\n\nTransaction terminée.\n\nClickez sur OK pour client suivant\n\n');
+            $('#refleft').html("Règlement conforme.\n\nClient Suivant");
+            setTimeout(window.location.replace("http://localhost:8000/terminal/"), 5000);
+
+
+        }
+    });
+}
